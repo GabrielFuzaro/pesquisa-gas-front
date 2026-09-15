@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "code": "A",
+      "description": "Motocicletas, ciclomotores, motonetas e triciclos motorizados."
+    },
+    {
+      "code": "B",
+      "description": "Veículos cujo peso bruto total não exceda 3.500 kg e cuja lotação não exceda 8 lugares, excluído o do motorista."
+    },
+    {
+      "code": "C",
+      "description": "Veículos motorizados utilizados em transporte de carga, cujo peso bruto total exceda 3.500 kg."
+    },
+    {
+      "code": "D",
+      "description": "Veículos motorizados utilizados no transporte de passageiros, cuja lotação exceda 8 lugares, excluído o do motorista."
+    },
+    {
+      "code": "E",
+      "description": "Combinações de veículos em que a unidade tratora se enquadre nas categorias B, C ou D e cuja unidade acoplada, reboque, semi-reboque, trailer ou articulada tenha 6.000 kg ou mais de peso bruto total ou cuja lotação exceda 8 lugares, excluído o do motorista."
+    },
+    {
+      "code": "ACC",
+      "description": "Autorização para Conduzir Ciclomotor (veículos de duas ou três rodas com motor de até 50 cm³)."
+    }
+  ]
+}
