@@ -1,0 +1,67 @@
+
+.max-w-md {
+  width: 50% !important;
+}
+
+.bx,
+.bx-log-out {
+  font-size: 1.5rem;
+  color: #fff !important;
+  cursor: pointer;
+}
+
+.logo_sistema {
+  width: 15%;
+}
+
+.logo_sistema_login {
+  width: 10%;
+}
+
+.logo_codiub {
+  width: 8%;
+}
+
+.menu {
+  display: none;
+}
+
+.icon-white{
+  filter: brightness(0) saturate(100%) invert(100%) sepia(33%) saturate(841%)
+    hue-rotate(205deg) brightness(108%) contrast(104%);
+}
+
+@media screen and (max-width: 900px) {
+  .col img {
+    width: 50%;
+  }
+
+  .logo_codiub {
+    width: 25%;
+  }
+
+  .logo_sistema {
+    width: 25%;
+  }
+
+  .logo_sistema_login {
+    width: 5%;
+  }
+
+  .img-logout{
+    width: 10% !important;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    justify-items: center;
+    padding: 5%;
+  }
+
+  .icon-logout {
+    width: 10% !important;
+  }
+}

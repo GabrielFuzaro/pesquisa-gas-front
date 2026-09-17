@@ -1,1 +1,27 @@
-<p>footer works!</p>
+<div class="footer">
+  <div class="w-full mx-auto md:py-1 p-1 md:pb-1 pb-4 md:px-2">
+    <div class="grid md:grid-cols-3">
+      <div class="col flex items-center justify-center md:justify-start">
+        <a href="https://codiub.com.br/" target="_blank" class="flex justify-center md:justify-start">
+          <img src="assets/codiub-branca-horizontal.png" class="h-12" alt="" />
+        </a>
+      </div>
+
+      <div class="col flex items-center justify-center">
+        <span *ngIf="value == 'CMS'"
+          class="flex items-center justify-center w-full text-sm text-gray-500 dark:text-gray-400">
+          Gerenciamento de Pesquisa Gás</span>
+
+        <span *ngIf="value != 'CMS'"
+          class="flex items-center justify-center w-full text-sm text-gray-500 dark:text-gray-400">
+          Pesquisa Gás</span>
+      </div>
+
+      <div class="col flex items-center justify-center md:justify-end">
+        <span class="flex items-center justify-center text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <a href="https://codiub.com.br/" target="_blank" class="hover:underline">© {{ year }} Codiub</a>
+          - Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<form *ngIf="competenciaFormulario" class="w-full">
+    <div class="block md:flex md:justify-between justify-center gap-5">
+        <div class="col w-full">
+            <label class="block text-sm" for="competencia">Competência</label>
+            <select id="competencia" formControlName="competencia" class="w-full p-2.5">
+                <option value="" disabled selected>Selecione a competência</option>
+                <option *ngFor="let competencia of competencias" [value]="competencia.mes + '-' + competencia.ano">
+                    {{ competencia.mesExtenso }}/{{ competencia.ano }}
+                </option>
+            </select>
+        </div>
+    </div>
+</form>

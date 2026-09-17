@@ -1,0 +1,23 @@
+/* estilo do componente Angular */
+.lista-historico::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lista-historico::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lista-historico::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* cinza claro, ajuste como quiser */
+  border-radius: 9999px;
+}
+
+.lista-historico::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+/* Firefox */
+.lista-historico {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(85, 85, 85);
+}

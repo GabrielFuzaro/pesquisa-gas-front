@@ -1,0 +1,48 @@
+<!-- [ngStyle]="{
+  'background-color': styleService.colorVariables['bg_primary_color']
+}" -->
+
+<div
+  class="full-width"
+  [class] = "value == 'CMS' ? 'navbar' : 'bg-white'"
+>
+  <div *ngIf="value == 'CMS'" class="">
+    <div class="grid grid-cols-2 items-center justify-between h-auto">
+      <div class="col flex h-auto">
+        <img
+          (click)="logout(true)"
+          class="h-auto max-w-full p-3 logo_sistema"
+          src="assets/logopmu.png"
+          alt=""
+        />
+      </div>
+
+      <div class="col p-2 flex items-center justify-end">
+        <p class="m-5 flex items-center text-white justify-center text-sm">
+          Bem vindo(a), {{ nameUser }}
+        </p>
+
+        <img
+          (click)="logout(false)"
+          src="assets/icon/logout.svg"
+          class="icon-white img-logout cursor-pointer"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="value != 'CMS'">
+    <div class="flex items-center justify-start">
+      <img
+        class="h-auto max-w-full p-3 logo_sistema"
+        src="assets/logopmu.png"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+
+<div div *ngIf="value != 'CMS'">
+  <p class="font-bold md:p-10 p-5 navbar text-white text-2xl">Pesquisa de Gás</p>
+</div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/routes/login.service';
 import { CookieService } from 'src/app/services/cookie.service';
 
 @Component({
@@ -8,7 +10,17 @@ import { CookieService } from 'src/app/services/cookie.service';
 })
 export class NavbarComponent {
 
-  constructor(private cookieService: CookieService) {}
+  @Input() value: string | undefined;
 
-  
+  nameUser: string | {[property: string]: string} | undefined;
+
+  ngOnInit(): void {
+    this.nameUser = this.cookieService.getCookie('user')
+  }
+
+  constructor(private cookieService: CookieService, private loginService: LoginService, private route: Router) {}
+
+  async logout(user?: boolean) {
+    this.loginService.logout(user)
+  }
 }
