@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { HistoricoCompetencias } from "../interfaces/dto/historico-competencias";
 import { CookieService } from "../services/cookie.service";
@@ -22,13 +22,16 @@ export class HistoricoService{
 
   });
 
-  buscarHistorico(): Observable<Historico[]> {
-    return this.http.get<Historico[]>(`${this.apiHist}`,
-        {
-            headers: this.httpHeaders
-        }
-    )
-  }
+    buscarHistoricosPorMesEspecifico(mes: number, ano: number): Observable<Historico[]> {
+    const params = new HttpParams()
+        .set('mes', mes)
+        .set('ano', ano);
+
+    return this.http.get<Historico[]>(`${this.apiHist}/por-mes-especifico`, {
+        headers: this.httpHeaders,
+        params
+    });
+    }
 
     buscarHistoricoCompetencias(): Observable<HistoricoCompetencias[]> {
         return this.http.get<HistoricoCompetencias[]>(`${this.apiHist}/competencias`,
