@@ -3,9 +3,11 @@ import { Injectable } from "@angular/core";
 import { HistoricoCompetencias } from "../interfaces/dto/historico-competencias";
 import { CookieService } from "../services/cookie.service";
 import { Observable } from 'rxjs';
+import { Page } from "../interfaces/dto/page";
 import { environment } from "src/environments/environment";
 import { HistoricoPreco } from "../interfaces/dto/historico-preco";
 import { Historico } from "../interfaces/dto/historico";
+import { HistoricoPorMes } from "../interfaces/dto/historico-por-mes";
 
 @Injectable({
     providedIn: 'root'
@@ -48,4 +50,29 @@ export class HistoricoService{
             }
         );
     }
+
+    buscarMenorPreco(
+        page: number,
+        size: number,
+        orderPreco: string,
+        mes: number,
+        ano: number,
+        estabelecimentoId?: number
+        ): Observable<Page<HistoricoPorMes>> {
+        let params = new HttpParams()
+            .set('page', page)
+            .set('size', size)
+            .set('orderPreco', orderPreco)
+            .set('mes', mes)
+            .set('ano', ano);
+
+        if (estabelecimentoId) {
+            params = params.set('estabelecimentoId', estabelecimentoId);
+        }
+
+        return this.http.get<Page<HistoricoPorMes>>(`${this.apiHist}/competencias-detalhadas`, {
+            headers: this.httpHeaders,
+            params
+        });
+        }
 }
