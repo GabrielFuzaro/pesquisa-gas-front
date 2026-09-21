@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BuscarCompetenciasFiltroComponent } from './features/user/home/buscar-competencias-filtro/buscar-competencias-filtro.component';
 import { BuscarEstabelecimentosFiltroComponent } from './features/user/home/buscar-estabelecimentos-filtro/buscar-estabelecimentos-filtro.component';
 import { BuscarHistoricosFiltroComponent } from './features/user/home/buscar-historicos-filtro/buscar-historicos-filtro.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BuscarHistoricosFiltroComponent } from './features/user/home/buscar-his
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

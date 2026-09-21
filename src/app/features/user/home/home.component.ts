@@ -16,12 +16,27 @@ export class HomeComponent {
   constructor(private router: Router, private historicoService: HistoricoService, private notifier: NotifierService) {}
 
   competencias: HistoricoCompetencias[] = [];
+  mesSelecionado?: number;
+  anoSelecionado?: number;
+  estabelecimentoSelecionado?: number;
+  mesAplicado?: number;
+  anoAplicado?: number;
+  estabelecimentoAplicado?: number;
+
 
   competenciaFormulario = new FormGroup({
     competencia: new FormControl('', Validators.required)
   })
 
   ngOnInit(): void {
+    const dataAtual = new Date();
+
+    this.mesSelecionado = dataAtual.getMonth() + 1;
+    this.anoSelecionado = dataAtual.getFullYear();
+
+    this.mesAplicado = this.mesSelecionado;
+    this.anoAplicado = this.anoSelecionado;
+
     this.carregarCompetencias()
   }
 
@@ -36,4 +51,20 @@ export class HomeComponent {
       this.notifier.showError('Erro ao buscar competências')
     }
   }
+
+  filtrarCompetencia(event: { mes: number; ano: number }) {
+  this.mesSelecionado = event.mes;
+  this.anoSelecionado = event.ano;
+}
+
+filtrarEstabelecimento(id: number) {
+  console.log("ESTABELECIMENTO SELECIONADO: ", id)
+  this.estabelecimentoSelecionado = id;
+}
+
+aplicarFiltros() {
+  this.mesAplicado = this.mesSelecionado;
+  this.anoAplicado = this.anoSelecionado;
+  this.estabelecimentoAplicado = this.estabelecimentoSelecionado;
+}
 }

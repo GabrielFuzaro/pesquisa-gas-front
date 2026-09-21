@@ -1,13 +1,35 @@
-<form *ngIf="estabelecimentoFormulario" class="w-full">
-    <div class="block md:flex md:justify-between justify-center gap-5">
-        <div class="col w-full">
-            <label class="block text-sm" for="competencia">Estabelecimentos</label>
-            <select id="competencia" formControlName="competencia" class="w-full p-2.5">
-                <option value="" disabled selected>Selecione a competência</option>
-                <option *ngFor="let estabelecimento of estabelecimentos">
-                    {{ estabelecimento.nome }}
-                </option>
-            </select>
-        </div>
+<form [formGroup]="estabelecimentoFormulario" class="w-full">
+  <div class="relative w-full">
+
+    <label class="block text-sm mb-1" for="nome">
+      Estabelecimentos
+    </label>
+
+    <input
+      id="nome"
+      type="text"
+      formControlName="nome"
+      autocomplete="off"
+      placeholder="Pesquisar estabelecimento..."
+      class="w-full p-2.5 border rounded-md"
+      (input)="filtrarEstabelecimentos()"
+    >
+
+    <div
+      *ngIf="estabelecimentosFiltrados.length > 0"
+      class="absolute z-10 w-full bg-white border border-gray-200 rounded-md shadow-md mt-1 max-h-52 overflow-y-auto"
+    >
+
+      <button
+        type="button"
+        *ngFor="let estabelecimento of estabelecimentosFiltrados"
+        class="w-full text-left px-4 py-2 hover:bg-gray-100"
+        (click)="selecionarEstabelecimento(estabelecimento)"
+      >
+        {{ estabelecimento.nome }}
+      </button>
+
     </div>
+
+  </div>
 </form>

@@ -11,13 +11,36 @@
     </div>
 
 <div class="flex gap-6">
-    <app-buscar-competencias-filtro></app-buscar-competencias-filtro>
-    <app-buscar-estabelecimentos-filtro></app-buscar-estabelecimentos-filtro>
+
+  <app-buscar-competencias-filtro
+    (competenciaSelecionada)="filtrarCompetencia($event)"
+  >
+  </app-buscar-competencias-filtro>
+
+  <app-buscar-estabelecimentos-filtro
+    (estabelecimentoSelecionado)="filtrarEstabelecimento($event)"
+  >
+  </app-buscar-estabelecimentos-filtro>
+
 </div>
+
+<div class="mt-4">
+  <button
+    type="button"
+    (click)="aplicarFiltros()"
+    class="px-4 py-2 rounded-md bg-[#14263d] text-white"
+  >
+    Aplicar filtros
+  </button>
+</div>
+
 <div>
-    <div>
-        <app-buscar-historicos-filtro></app-buscar-historicos-filtro>
-    </div>
+  <app-buscar-historicos-filtro
+    [mes]="mesAplicado"
+    [ano]="anoAplicado"
+    [estabelecimentoId]="estabelecimentoAplicado"
+  >
+  </app-buscar-historicos-filtro>
 </div>
 <div>
     <div>

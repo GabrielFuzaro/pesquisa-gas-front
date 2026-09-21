@@ -51,7 +51,7 @@ export class HistoricoService{
         );
     }
 
-    buscarMenorPreco(
+    buscarMenorPrecoAtuais(
         page: number,
         size: number,
         orderPreco: string,
@@ -66,7 +66,7 @@ export class HistoricoService{
             .set('mes', mes)
             .set('ano', ano);
 
-        if (estabelecimentoId) {
+        if (estabelecimentoId !== undefined) {
             params = params.set('estabelecimentoId', estabelecimentoId);
         }
 

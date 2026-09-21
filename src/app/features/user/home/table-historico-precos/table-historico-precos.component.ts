@@ -120,7 +120,7 @@ export class TableHistoricoPrecosComponent {
 async carregarMenorPreco(mes: number, ano: number): Promise<void> {
   try {
     const response = await firstValueFrom(
-      this.historicoService.buscarMenorPreco(0, 1, 'ASC', mes, ano)
+      this.historicoService.buscarMenorPrecoAtuais(0, 1, 'ASC', mes, ano)
     );
 
     this.menorPrecoHistorico = response.content;

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { HistoricoPreco } from 'src/app/interfaces/dto/historico-preco';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { HistoricoService } from 'src/app/routes/historico.service';
 import { NotifierService } from 'src/app/services/notifier.service';
+import { HistoricoPorMes } from 'src/app/interfaces/dto/historico-por-mes';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -9,24 +10,54 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './buscar-historicos-filtro.component.html',
   styleUrls: ['./buscar-historicos-filtro.component.css']
 })
-export class BuscarHistoricosFiltroComponent {
+export class BuscarHistoricosFiltroComponent implements OnChanges {
 
-  constructor(private historicoService: HistoricoService, private notifier: NotifierService) {}
+  constructor(
+    private historicoService: HistoricoService,
+    private notifier: NotifierService
+  ) {}
 
-  historicos: HistoricoPreco[] = [];
+  historicos: HistoricoPorMes[] = [];
 
-  ngOnInit(): void{
-    this.buscarHistoricos();
-  }
+  @Input() mes?: number;
+  @Input() ano?: number;
+  @Input() estabelecimentoId?: number;
+  @Input() filtrosAplicados = 0;
 
-  async buscarHistoricos() {
-    try{
-      this.historicos = await firstValueFrom(
-        this.historicoService.buscarHistoricosATuais()
-      );
-    } catch (error){
-      this.notifier.showError('Erro ao buscar históricos')
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (
+      (changes['mes']) ||
+      changes['ano'] || 
+      changes['estabelecimentoId'] &&
+      this.mes &&
+      this.ano
+    ) {
+      this.buscarHistoricosFiltrados();
     }
   }
 
+  async buscarHistoricosFiltrados() {
+
+    try {
+
+      const response = await firstValueFrom(
+        this.historicoService.buscarMenorPrecoAtuais(
+          0,
+          10,
+          'ASC',
+          this.mes!,
+          this.ano!,
+          this.estabelecimentoId
+        )
+      );
+
+      this.historicos = response.content;
+
+    } catch (error) {
+
+      this.notifier.showError('Erro ao buscar históricos');
+
+    }
+  }
 }

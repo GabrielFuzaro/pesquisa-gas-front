@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { HistoricoCompetencias } from 'src/app/interfaces/dto/historico-competencias';
 import { HistoricoService } from 'src/app/routes/historico.service';
 import { firstValueFrom } from 'rxjs';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-buscar-competencias-filtro',
@@ -16,6 +17,8 @@ export class BuscarCompetenciasFiltroComponent {
    constructor(private router: Router, private historicoService: HistoricoService, private notifier: NotifierService) {}
 
   competencias: HistoricoCompetencias[] = [];
+
+  @Output() competenciaSelecionada = new EventEmitter<{mes: number; ano: number;}>();
 
   competenciaFormulario = new FormGroup({
     competencia: new FormControl('', Validators.required)
@@ -36,5 +39,15 @@ export class BuscarCompetenciasFiltroComponent {
       this.notifier.showError('Erro ao buscar competências')
     }
   }
+
+  selecionarCompetencia(valor: string): void {
+
+  const [mes, ano] = valor.split('-').map(Number);
+
+  this.competenciaSelecionada.emit({
+    mes,
+    ano
+  });
+}
 
 }
