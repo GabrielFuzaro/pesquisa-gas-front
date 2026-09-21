@@ -129,6 +129,11 @@ async carregarMenorPreco(mes: number, ano: number): Promise<void> {
   }
 }
 
+estaSelecionada(competencia: HistoricoCompetencias): boolean {
+  return this.competenciaSelecionada?.mes === competencia.mes &&
+         this.competenciaSelecionada?.ano === competencia.ano;
+}
+
   calcularMediaPreco(): number {
 
     const precos = this.historicos.flatMap(historico => historico.informacoes.map(informacao => informacao.preco));

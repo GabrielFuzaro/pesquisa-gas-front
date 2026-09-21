@@ -6,7 +6,7 @@
     <div class="block md:flex md:justify-between justify-center gap-5">
         <div class="col w-full">
 
-            <label class="block text-sm" for="competencia">
+            <label class="block text-base font-medium mb-2" for="competencia">
                 Competência
             </label>
 
@@ -14,7 +14,7 @@
                 id="competencia"
                 formControlName="competencia"
                 (change)="selecionarCompetencia($any($event.target).value)"
-                class="w-full p-2.5"
+                class="w-full p-4 text-base border rounded-md"
             >
                 <option value="" disabled selected>
                     Selecione a competência
@@ -30,4 +30,3 @@
 
         </div>
     </div>
-</form>

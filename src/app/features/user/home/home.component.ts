@@ -52,19 +52,18 @@ export class HomeComponent {
     }
   }
 
-  filtrarCompetencia(event: { mes: number; ano: number }) {
-  this.mesSelecionado = event.mes;
-  this.anoSelecionado = event.ano;
-}
+    filtrarCompetencia(event: { mes: number; ano: number }) {
+    this.mesSelecionado = event.mes;
+    this.anoSelecionado = event.ano;
+  }
 
-filtrarEstabelecimento(id: number) {
-  console.log("ESTABELECIMENTO SELECIONADO: ", id)
-  this.estabelecimentoSelecionado = id;
-}
+  filtrarEstabelecimento(id: number) {
+    this.estabelecimentoSelecionado = id;
+  }
 
-aplicarFiltros() {
-  this.mesAplicado = this.mesSelecionado;
-  this.anoAplicado = this.anoSelecionado;
-  this.estabelecimentoAplicado = this.estabelecimentoSelecionado;
-}
+  aplicarFiltros() {
+    this.mesAplicado = this.mesSelecionado;
+    this.anoAplicado = this.anoSelecionado;
+    this.estabelecimentoAplicado = this.estabelecimentoSelecionado;
+  }
 }

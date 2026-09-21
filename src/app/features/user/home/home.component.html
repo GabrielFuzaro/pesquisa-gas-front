@@ -6,35 +6,35 @@
   </div>
 
     <div class="title text-left mb-8">
-      <h3>Pesquisa de Preços de combustível</h3>
-      <p>Consulta de preços de combustível em Uberaba</p>
+      <h3 class="text-2xl">Pesquisa de Preços de Gás</h3>
+      <p class="text-sm opacity-80">Consulta de preços de Gás em Uberaba</p>
     </div>
 
-<div class="flex gap-6">
+<div class="flex flex-col md:flex-row md:items-end gap-6">
 
   <app-buscar-competencias-filtro
+    class="w-full md:w-96"
     (competenciaSelecionada)="filtrarCompetencia($event)"
   >
   </app-buscar-competencias-filtro>
 
   <app-buscar-estabelecimentos-filtro
+    class="w-full md:w-96"
     (estabelecimentoSelecionado)="filtrarEstabelecimento($event)"
   >
   </app-buscar-estabelecimentos-filtro>
 
-</div>
-
-<div class="mt-4">
   <button
     type="button"
     (click)="aplicarFiltros()"
-    class="px-4 py-2 rounded-md bg-[#14263d] text-white"
+    class="px-4 py-3 rounded-md bg-[#14263d] text-white whitespace-nowrap"
   >
     Aplicar filtros
   </button>
+
 </div>
 
-<div>
+<div class="mt-5">
   <app-buscar-historicos-filtro
     [mes]="mesAplicado"
     [ano]="anoAplicado"
@@ -42,11 +42,14 @@
   >
   </app-buscar-historicos-filtro>
 </div>
+<div class="mt-10 w-full h-[400px] border-2 border-gray-300 rounded-lg">
+</div>
 <div>
     <div>
         <app-table-historico-precos></app-table-historico-precos>
     </div>
 </div>
+
 <div>
     <app-footer></app-footer>
 </div>

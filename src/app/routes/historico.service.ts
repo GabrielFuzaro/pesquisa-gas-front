@@ -51,6 +51,12 @@ export class HistoricoService{
         );
     }
 
+    buscarTodosHistoricos(): Observable<Page<Historico>> {
+        return this.http.get<Page<Historico>>(`${this.apiHist}`, {
+            headers: this.httpHeaders
+        })
+    }
+
     buscarMenorPrecoAtuais(
         page: number,
         size: number,

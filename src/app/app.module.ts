@@ -14,6 +14,7 @@ import { BuscarCompetenciasFiltroComponent } from './features/user/home/buscar-c
 import { BuscarEstabelecimentosFiltroComponent } from './features/user/home/buscar-estabelecimentos-filtro/buscar-estabelecimentos-filtro.component';
 import { BuscarHistoricosFiltroComponent } from './features/user/home/buscar-historicos-filtro/buscar-historicos-filtro.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideAnimations } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToastrModule.forRoot(),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimations(),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

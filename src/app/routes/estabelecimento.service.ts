@@ -32,7 +32,7 @@ export class EstabelecimentoService {
         )
     }
 
-    listrEstabelecimentos(): Observable<Estabelecimento[]>{
+    listarEstabelecimentos(): Observable<Estabelecimento[]>{
         return this.http.get<Estabelecimento[]>(`${this.apiEst}`, 
             {
                 headers: this.getHeaders()

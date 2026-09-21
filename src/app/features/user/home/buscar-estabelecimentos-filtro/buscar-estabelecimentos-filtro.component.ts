@@ -33,7 +33,7 @@ export class BuscarEstabelecimentosFiltroComponent {
   async carregarEstabelecimentos() {
     try {
       const response = await firstValueFrom(
-        this.estabelecimentoService.listrEstabelecimentos()
+        this.estabelecimentoService.listarEstabelecimentos()
       );
 
       this.estabelecimentos = response;
@@ -56,6 +56,12 @@ export class BuscarEstabelecimentosFiltroComponent {
     );
   }
 
+  limparFiltroEstabelecimento(): void {
+    this.estabelecimentoFormulario.get('nome')?.setValue('');
+    this.estabelecimentosFiltrados = [];
+    this.estabelecimentoSelecionado.emit(undefined); // ajuste conforme o nome real do seu @Output
+  }
+
   selecionarEstabelecimento(estabelecimento: Estabelecimento) {
     this.estabelecimentoFormulario
       .get('nome')
@@ -64,5 +70,14 @@ export class BuscarEstabelecimentosFiltroComponent {
     this.estabelecimentosFiltrados = [];
 
     this.estabelecimentoSelecionado.emit(estabelecimento.id);
+  }
+
+  mostrarDropdown = false;
+
+  onBlurInput(): void {
+    // pequeno delay pra permitir o (click) no item da lista disparar antes do dropdown fechar
+    setTimeout(() => {
+      this.mostrarDropdown = false;
+    }, 150);
   }
 }

@@ -4,6 +4,9 @@ import { HistoricoService } from 'src/app/routes/historico.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { HistoricoPorMes } from 'src/app/interfaces/dto/historico-por-mes';
 import { firstValueFrom } from 'rxjs';
+import { InformacoesHistorico } from 'src/app/interfaces/dto/informacoes-historico';
+import { HistoricoPreco } from 'src/app/interfaces/dto/historico-preco';
+import { Historico } from 'src/app/interfaces/dto/historico';
 
 @Component({
   selector: 'app-buscar-historicos-filtro',
@@ -18,6 +21,8 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
   ) {}
 
   historicos: HistoricoPorMes[] = [];
+  historicoTodos: Historico[] = [];
+  informacoes: InformacoesHistorico[] = [];
 
   @Input() mes?: number;
   @Input() ano?: number;
@@ -34,6 +39,22 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
       this.ano
     ) {
       this.buscarHistoricosFiltrados();
+    }
+  }
+
+  ngOnInit(): void {
+    this.buscarTodosHistoricos();
+  }
+
+  async buscarTodosHistoricos() {
+    try{
+      const response = await firstValueFrom(
+      this.historicoService.buscarTodosHistoricos());
+
+      this.historicoTodos = response.content;
+
+    } catch (error) {
+      this.notifier.showError("Erro ao carregar Históricos")
     }
   }
 
