@@ -10,9 +10,14 @@
       {{ coordsSelecionadas?.nome }}
     </h3>
 
-    <p *ngIf="coordsSelecionadas?.preco" class="text-xl font-bold text-green-600 mb-4">
-      R$ {{ coordsSelecionadas?.preco | number:'1.2-2' }}
-    </p>
+    <div *ngIf="coordsSelecionadas?.precos?.length" class="flex flex-col gap-1 mb-4">
+      <div *ngFor="let item of coordsSelecionadas?.precos" class="flex items-baseline justify-between">
+        <span class="text-xs text-gray-500">{{ item.tamanhoDescricao }}</span>
+        <span class="text-lg font-bold text-green-600">
+          R$ {{ item.preco | number:'1.2-2' }}
+        </span>
+      </div>
+    </div>
 
     <div class="flex flex-col gap-3">
       <button type="button" (click)="abrirGoogleMaps()" class="px-4 py-2 rounded-md bg-[#14263d] text-white">
