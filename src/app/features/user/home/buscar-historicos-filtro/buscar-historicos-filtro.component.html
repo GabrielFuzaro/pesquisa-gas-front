@@ -6,42 +6,17 @@
   >
     <div class="min-w-0">
       <h3 class="text-lg font-bold text-[#14263d] truncate">
-        {{ historico.estabelecimento }}
+        {{ historico.nomeEstabelecimento }}
       </h3>
       <p class="text-lg text-gray-500 truncate">
-        {{ historico.informacoes[0].logradouro }}
+        {{ historico.logradouro }}
       </p>
       <p class="text-base text-gray-600 font-bold mt-1">
-        ({{ historico.created | date:'dd/MM/yyyy' }})
+        ({{ historico.data | date:'dd/MM/yyyy' }})
       </p>
     </div>
     <span class="text-2xl font-bold text-green-600 whitespace-nowrap">
-      R$ {{ historico.informacoes[0].preco | number:'1.2-2' }}
+      R$ {{ historico.preco | number:'1.2-2' }}
     </span>
   </div>
-</div>
-
-<!-- Lista filtrada (após "Aplicar filtros") -->
-<div *ngIf="filtroAplicado" class="lista-historico flex flex-row gap-4 w-full overflow-x-auto pb-3">
-  <ng-container *ngFor="let historicoMes of historicos">
-    <div
-      *ngFor="let historico of historicoMes.historicos"
-      class="flex min-w-[280px] shrink-0 flex-col justify-between gap-3 rounded-lg border border-gray-200 bg-white px-6 py-5 shadow-sm"
-    >
-      <div class="min-w-0">
-        <h3 class="text-lg font-bold text-[#14263d] truncate">
-          {{ historico.estabelecimento }}
-        </h3>
-        <p class="text-lg text-gray-500 truncate">
-          {{ historico.informacoes[0].logradouro }}
-        </p>
-        <p class="text-base text-gray-600 font-bold mt-1">
-          ({{ historico.informacoes[0].data| date:'dd/MM/yyyy' }})
-        </p>
-      </div>
-      <span class="text-2xl font-bold text-green-600 whitespace-nowrap">
-        R$ {{ historico.informacoes[0].preco | number:'1.2-2' }}
-      </span>
-    </div>
-  </ng-container>
 </div>

@@ -5,7 +5,7 @@ import { NotifierService } from 'src/app/services/notifier.service';
 import { HistoricoPorMes } from 'src/app/interfaces/dto/historico-por-mes';
 import { firstValueFrom } from 'rxjs';
 import { InformacoesHistorico } from 'src/app/interfaces/dto/informacoes-historico';
-import { Historico } from 'src/app/interfaces/dto/historico';
+import { HistoricoPreco } from 'src/app/interfaces/dto/historico-preco';
 
 @Component({
   selector: 'app-buscar-historicos-filtro',
@@ -20,7 +20,7 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
   ) {}
 
   historicos: HistoricoPorMes[] = [];
-  historicoTodos: Historico[] = [];
+  historicoTodos: HistoricoPreco[] = [];
   informacoes: InformacoesHistorico[] = [];
   filtroAplicado = false;
 
@@ -31,25 +31,29 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (changes['filtrosAplicados'] && this.mes && this.ano){
-      this.filtroAplicado = true;
-      this.buscarHistoricosFiltrados();
-    }
+     if (
+    changes['filtrosAplicados'] &&
+    !changes['filtrosAplicados'].firstChange &&
+    this.mes &&
+    this.ano
+  ) {
+    this.filtroAplicado = true;
+    this.buscarHistoricosFiltrados();
   }
+}
 
   ngOnInit(): void {
     this.buscarTodosHistoricos();
   }
 
   async buscarTodosHistoricos() {
-    try{
+    try {
       const response = await firstValueFrom(
-      this.historicoService.buscarTodosHistoricos());
-
-      this.historicoTodos = response.content;
-
+        this.historicoService.buscarHistoricosATuais()
+      );
+      this.historicoTodos = response;
     } catch (error) {
-      this.notifier.showError("Erro ao carregar Históricos")
+      this.notifier.showError("Erro ao carregar Históricos");
     }
   }
 
