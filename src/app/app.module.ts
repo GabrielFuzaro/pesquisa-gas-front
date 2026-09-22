@@ -14,7 +14,8 @@ import { BuscarCompetenciasFiltroComponent } from './features/user/home/buscar-c
 import { BuscarEstabelecimentosFiltroComponent } from './features/user/home/buscar-estabelecimentos-filtro/buscar-estabelecimentos-filtro.component';
 import { BuscarHistoricosFiltroComponent } from './features/user/home/buscar-historicos-filtro/buscar-historicos-filtro.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { provideAnimations } from '@angular/platform-browser/animations'
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { MapComponent } from './features/user/home/map/map.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { provideAnimations } from '@angular/platform-browser/animations'
     TableHistoricoPrecosComponent,
     BuscarCompetenciasFiltroComponent,
     BuscarEstabelecimentosFiltroComponent,
-    BuscarHistoricosFiltroComponent
+    BuscarHistoricosFiltroComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+<div #mapContainer class="w-full h-[500px] rounded-lg"></div>
+
+<div
+  *ngIf="showModalNavegacao"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+  (click)="fecharModalNavegacao()"
+>
+  <div class="bg-white rounded-lg p-6 w-80" (click)="$event.stopPropagation()">
+    <h3 class="text-lg font-bold text-[#14263d] mb-1">
+      {{ coordsSelecionadas?.nome }}
+    </h3>
+
+    <p *ngIf="coordsSelecionadas?.preco" class="text-xl font-bold text-green-600 mb-4">
+      R$ {{ coordsSelecionadas?.preco | number:'1.2-2' }}
+    </p>
+
+    <div class="flex flex-col gap-3">
+      <button type="button" (click)="abrirGoogleMaps()" class="px-4 py-2 rounded-md bg-[#14263d] text-white">
+        Abrir no Google Maps
+      </button>
+
+      <button type="button" (click)="abrirWaze()" class="px-4 py-2 rounded-md bg-blue-500 text-white">
+        Abrir no Waze
+      </button>
+
+      <button type="button" (click)="fecharModalNavegacao()" class="px-4 py-2 rounded-md border border-gray-300 text-[#14263d]">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

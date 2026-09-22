@@ -5,7 +5,6 @@ import { NotifierService } from 'src/app/services/notifier.service';
 import { HistoricoPorMes } from 'src/app/interfaces/dto/historico-por-mes';
 import { firstValueFrom } from 'rxjs';
 import { InformacoesHistorico } from 'src/app/interfaces/dto/informacoes-historico';
-import { HistoricoPreco } from 'src/app/interfaces/dto/historico-preco';
 import { Historico } from 'src/app/interfaces/dto/historico';
 
 @Component({
@@ -23,6 +22,7 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
   historicos: HistoricoPorMes[] = [];
   historicoTodos: Historico[] = [];
   informacoes: InformacoesHistorico[] = [];
+  filtroAplicado = false;
 
   @Input() mes?: number;
   @Input() ano?: number;
@@ -31,13 +31,8 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (
-      (changes['mes']) ||
-      changes['ano'] || 
-      changes['estabelecimentoId'] &&
-      this.mes &&
-      this.ano
-    ) {
+    if (changes['filtrosAplicados'] && this.mes && this.ano){
+      this.filtroAplicado = true;
       this.buscarHistoricosFiltrados();
     }
   }

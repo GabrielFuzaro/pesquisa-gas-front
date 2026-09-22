@@ -61,9 +61,12 @@ export class HomeComponent {
     this.estabelecimentoSelecionado = id;
   }
 
+  filtrosAplicados = 0;
+  
   aplicarFiltros() {
     this.mesAplicado = this.mesSelecionado;
     this.anoAplicado = this.anoSelecionado;
     this.estabelecimentoAplicado = this.estabelecimentoSelecionado;
+    this.filtrosAplicados++;
   }
 }

@@ -11,4 +11,6 @@ export interface Estabelecimento extends DefaultDto {
     cnpj: string;
     gerente: string;
     proprietario: string;
+    latitude: string;
+    longitude: string;
 }

@@ -1,4 +1,4 @@
-/*import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 export interface MapInitOptions {
   container: HTMLElement;
@@ -155,4 +155,4 @@ export class MapService {
             });
         });
     }
-}*/
+}
