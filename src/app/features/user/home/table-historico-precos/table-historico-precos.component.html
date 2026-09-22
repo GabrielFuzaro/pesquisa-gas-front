@@ -28,8 +28,11 @@
                             <th class="w-1/2 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
                                 Posto
                             </th>
+                            <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
+                                Tamanho
+                            </th>
                             <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-green-500">
-                                Menor Preço
+                                Preço
                             </th>
                             <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
                                 Data
@@ -39,24 +42,29 @@
 
                     <tbody>
                         <ng-container *ngFor="let historicoMes of menorPrecoHistorico">
-                            <tr
-                                *ngFor="let historico of historicoMes.historicos"
-                                class="border-t border-gray-100 hover:bg-gray-50"
-                            >
-                                <td class="py-4 px-6 text-left">
-                                    <span class="text-base font-bold text-[#14263d] truncate">
-                                        {{ historico.estabelecimento }}
-                                    </span>
-                                </td>
-                                <td class="py-4 px-6 text-left">
-                                    <span class="inline-block rounded-md bg-green-100 px-2.5 py-1 text-sm font-semibold text-green-500 whitespace-nowrap">
-                                        R$ {{ historico.informacoes[0].preco | number:'1.2-2' }}
-                                    </span>
-                                </td>
-                                <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
-                                    {{ historico.informacoes[0].data | date:'dd/MM/yyyy' }}
-                                </td>
-                            </tr>
+                            <ng-container *ngFor="let historico of historicoMes.historicos">
+                                <tr
+                                    *ngFor="let info of historico.informacoes"
+                                    class="border-t border-gray-100 hover:bg-gray-50"
+                                >
+                                    <td class="py-4 px-6 text-left">
+                                        <span class="text-base font-bold text-[#14263d] truncate">
+                                            {{ historico.estabelecimento }}
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
+                                        {{ info.tamanhoCodigo }}
+                                    </td>
+                                    <td class="py-4 px-6 text-left">
+                                        <span class="inline-block rounded-md bg-green-100 px-2.5 py-1 text-sm font-semibold text-green-500 whitespace-nowrap">
+                                            R$ {{ info.preco | number:'1.2-2' }}
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
+                                        {{ info.data | date:'dd/MM/yyyy' }}
+                                    </td>
+                                </tr>
+                            </ng-container>
                         </ng-container>
                     </tbody>
                 </table>
@@ -116,6 +124,9 @@
                                 Posto
                             </th>
                             <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
+                                Tamanho
+                            </th>
+                            <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
                                 Preço
                             </th>
                             <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
@@ -146,6 +157,9 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                         </svg>
                                     </div>
+                                </td>
+                                <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
+                                    {{ info.tamanhoCodigo }}
                                 </td>
                                 <td class="py-4 px-6 text-left">
                                     <span class="inline-block rounded-md bg-gray-100 px-2.5 py-1 text-sm font-semibold text-[#14263d] whitespace-nowrap">

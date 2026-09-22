@@ -11,13 +11,15 @@
       <p class="text-lg text-gray-500 truncate">
         {{ historico.informacoes[0].logradouro }}
       </p>
-      <p class="text-base text-gray-600 font-bold mt-1">
-        ({{ historico.created | date:'dd/MM/yyyy' }})
-      </p>
     </div>
-    <span class="text-2xl font-bold text-green-600 whitespace-nowrap">
-      R$ {{ historico.informacoes[0].preco | number:'1.2-2' }}
-    </span>
+    <div class="flex flex-col gap-1">
+      <div *ngFor="let info of historico.informacoes" class="flex items-baseline justify-between gap-3">
+        <span class="text-sm text-gray-500 whitespace-nowrap">{{ info.tamanhoCodigo }} ({{ info.data | date:'dd/MM/yyyy' }})</span>
+        <span class="text-xl font-bold text-green-600 whitespace-nowrap">
+          R$ {{ info.preco | number:'1.2-2' }}
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -35,13 +37,15 @@
         <p class="text-lg text-gray-500 truncate">
           {{ historico.informacoes[0].logradouro }}
         </p>
-        <p class="text-base text-gray-600 font-bold mt-1">
-          ({{ historico.informacoes[0].data| date:'dd/MM/yyyy' }})
-        </p>
       </div>
-      <span class="text-2xl font-bold text-green-600 whitespace-nowrap">
-        R$ {{ historico.informacoes[0].preco | number:'1.2-2' }}
-      </span>
+      <div class="flex flex-col gap-1">
+        <div *ngFor="let info of historico.informacoes" class="flex items-baseline justify-between gap-3">
+          <span class="text-sm text-gray-500 whitespace-nowrap">{{ info.tamanhoCodigo }} ({{ info.data | date:'dd/MM/yyyy' }})</span>
+          <span class="text-xl font-bold text-green-600 whitespace-nowrap">
+            R$ {{ info.preco | number:'1.2-2' }}
+          </span>
+        </div>
+      </div>
     </div>
   </ng-container>
 </div>
