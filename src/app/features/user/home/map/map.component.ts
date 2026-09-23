@@ -126,7 +126,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
       this.adicionarPinsNoMapa(pinsComPreco);
     } catch (error) {
-      this.notifier.showError('Erro ao buscar postos filtrados');
+      this.notifier.showError('Erro ao buscar estabelecimentos filtrados');
     }
   }
 

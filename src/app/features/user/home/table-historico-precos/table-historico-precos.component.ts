@@ -76,7 +76,7 @@ export class TableHistoricoPrecosComponent {
 
   try {
 
-    // Mantém a tabela de menor preço por posto
+    // Mantém a tabela de menor preço por Estabelecimento
     await this.carregarMenorPreco(
       competencia.mes,
       competencia.ano
