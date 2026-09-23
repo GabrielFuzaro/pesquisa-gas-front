@@ -1,0 +1,89 @@
+<app-navbar [value]="tipoPagina"></app-navbar>
+
+<div class="">
+  <div class="flex h-full">
+    <div class="sidebar h-auto">
+      <div class="hidden" id="details">
+        <div class="logo-details">
+          <div class="logo_name">PB</div>
+          <i (click)="openMenu()" class="bx bx-menu btn-menu" id="btn"></i>
+        </div>
+      </div>
+
+      <div class="menu-scroll-container">
+        <span *ngFor="let item of menu" class="w-full">
+          <span
+            *ngIf="item.children && item.children.length > 0"
+            class="w-full"
+          >
+            <div class="w-full">
+              <button
+                class="w-full list transition"
+                id="list-{{ item.identificador }}"
+                (click)="showMenu(item)"
+              >
+                <div class="list-name">
+                  <div class="display">
+                    <img src="assets/icon/{{ item.iconName }}.svg" class="icon" id="{{item.iconName}}"/>
+                    <span class="pl-5 display-name w-auto text-wrap">
+                      {{ item.displayName }}</span
+                    >
+                  </div>
+                  <div class="display-icon">
+                    <mat-icon id="icon-{{ item.identificador }}"
+                      >keyboard_arrow_down</mat-icon
+                    >
+                  </div>
+                </div>
+              </button>
+              <span
+                *ngFor="let child of item.children"
+                class="hidden pl-5"
+                class="{{ item.identificador }}"
+              >
+                <a
+                  routerLink="{{ child.route }}"
+                  routerLinkActive="active"
+                  class="flex justify-start items-center w-full list-children cursor-pointer"
+                >
+                  <div class="flex justify-center items-center">
+                    <img src="assets/icon/{{ child.iconName }}.svg" />
+                    <span class="pl-5 display-name  w-auto text-wrap">{{
+                      child.displayName
+                    }}</span>
+                  </div>
+                </a>
+              </span>
+            </div>
+          </span>
+          <span
+            *ngIf="
+              !item.children ||
+              (item.children.length === 0 && item.route != null)
+            "
+            class="w-full"
+          >
+            <a
+              routerLink="{{ item.route }}"
+              routerLinkActive="active"
+              class="flex justify-start items-center w-full list cursor-pointer"
+            >
+              <div class="flex justify-center items-center">
+                <img src="assets/icon/{{item.iconName}}.svg">
+                <span class="pl-5 display-name">{{ item.displayName }}</span>
+              </div>
+            </a>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="home-section h-full">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div>
+    <app-footer></app-footer>
+  </div>
+</div>

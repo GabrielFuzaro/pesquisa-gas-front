@@ -1,0 +1,6 @@
+export const rolesENUM = {
+  ID_ADMIN: 1,
+  ROLE_ADMIN: 'ADMIN',
+  ID_CANDIDATO: 2,
+  ROLE_CANDIDATO: 'CANDIDATO',
+};

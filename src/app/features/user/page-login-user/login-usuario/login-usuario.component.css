@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.full-height {
+  height: 100vh !important;
+}
+
+.bg{
+  /* background-image: url('assets/background.png'); */
+  opacity : 0.5;
+}
+
+hr {
+  display: flex;
+  height: 1px;
+  width: 70%;
+  border: 0;
+  border-top: 1px solid #ffffff;
+  margin: 10px auto 10px auto;
+  padding: 0px;
+  align-items: center;
+}
+
+.width-50{
+  width: 30%;
+}
+
+
+.left{
+ left: 90%;
+}
+
+.bg-green-500{
+  background-color: #10B981;
+}
+
+.w-full{
+  width: 100%;
+}
+
+.bg-default{
+  background-color: #00216c;
+}
+
+.bg-default:hover{
+  background-color: #001859;
+}
+
+.bx-show{
+  color: rgb(76, 76, 76);
+}
+
+.register{
+  color: #00bef2;
+}
+
+.register:hover{
+  color: #0099c4;
+}
+
+/* Tailwind CSS classes or your CSS file */
+.h-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+footer {
+  background-color: var(--bg_primary_color);
+}

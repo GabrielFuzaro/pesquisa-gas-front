@@ -9,4 +9,6 @@ export interface InformacoesHistorico extends DefaultDto {
     numero: String;
     cep: String;
     estabelecimentoId: number;
+    tamanhoCodigo: string;
+    tamanhoDescricao: string;
 }

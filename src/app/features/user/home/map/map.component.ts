@@ -6,6 +6,12 @@ import { HistoricoService } from 'src/app/routes/historico.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { Estabelecimento } from 'src/app/interfaces/dto/estabelecimento';
 
+interface PrecoPorTamanho {
+  tamanhoCodigo: string;
+  tamanhoDescricao: string;
+  preco: number;
+}
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -26,7 +32,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   estabelecimentos: Estabelecimento[] = [];
 
   showModalNavegacao = false;
-  coordsSelecionadas: { lat: number; lng: number; nome: string; preco?: number } | null = null;
+  coordsSelecionadas: { lat: number; lng: number; nome: string; precos?: PrecoPorTamanho[] } | null = null;
 
   private initialView = {
     lat: -19.7502,
@@ -109,18 +115,22 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
           return {
             estabelecimento,
-            preco: historico.informacoes[0]?.preco,
+            precos: historico.informacoes.map(info => ({
+              tamanhoCodigo: info.tamanhoCodigo,
+              tamanhoDescricao: info.tamanhoDescricao,
+              preco: info.preco,
+            })),
           };
-        }).filter((item): item is { estabelecimento: Estabelecimento; preco: number } => item !== null)
+        }).filter((item): item is { estabelecimento: Estabelecimento; precos: PrecoPorTamanho[] } => item !== null)
       );
 
       this.adicionarPinsNoMapa(pinsComPreco);
     } catch (error) {
-      this.notifier.showError('Erro ao buscar postos filtrados');
+      this.notifier.showError('Erro ao buscar estabelecimentos filtrados');
     }
   }
 
-  adicionarPinsNoMapa(itens: { estabelecimento: Estabelecimento; preco?: number }[]): void {
+  adicionarPinsNoMapa(itens: { estabelecimento: Estabelecimento; precos?: PrecoPorTamanho[] }[]): void {
     this.mapService.clearPinOnMap(this.markers);
     this.markers = [];
 
@@ -140,20 +150,20 @@ export class MapComponent implements AfterViewInit, OnChanges {
         longitude: lng,
         draggable: false,
         clickable: true,
-        onClick: () => this.abrirModalNavegacao(item.estabelecimento, item.preco),
+        onClick: () => this.abrirModalNavegacao(item.estabelecimento, item.precos),
       });
 
       this.markers.push(marker);
     });
   }
 
-  abrirModalNavegacao(estabelecimento: Estabelecimento, preco?: number): void {
+  abrirModalNavegacao(estabelecimento: Estabelecimento, precos?: PrecoPorTamanho[]): void {
     this.ngZone.run(() => {
       this.coordsSelecionadas = {
         lat: Number(estabelecimento.latitude),
         lng: Number(estabelecimento.longitude),
         nome: estabelecimento.nome,
-        preco,
+        precos,
       };
       this.showModalNavegacao = true;
     });
