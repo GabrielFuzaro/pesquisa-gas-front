@@ -1,0 +1,15 @@
+button {
+  width: 100%;
+  text-align: center;       /* Centraliza texto normal */
+  display: flex;            /* Garante centralização flexbox */
+  justify-content: center;  /* Centraliza horizontalmente */
+  align-items: center;      /* Centraliza verticalmente */
+}
+
+:host(.green) button {
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

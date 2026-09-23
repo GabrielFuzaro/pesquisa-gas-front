@@ -1,0 +1,86 @@
+<div class="flex flex-col h-screen">
+  <app-navbar></app-navbar>
+
+  <section class="flex flex-1 items-center justify-center">
+    <div class="max-sm:w-full max-sm:m-5 sm:w-full sm:m-5 sm:flex sm:justify-center">
+      <div class="bg-white w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
+        <div class="flex flex-col items-center justify-center">
+          <!-- Aqui ficará o login da Secretária responsável pelo sistema-->
+          <img
+            class="m-5 mb-0"
+            src="assets/SEDS_Azul.png"
+            alt=""
+            width="70%"
+          />
+          <div class="block font-bold primary-color-text leading-tight text-center tracking-tight md:text-xl">
+            <small>Login Usuário</small>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 space-y-4 md:space-y-6 sm:p-8">
+          <form class="space-y-4 md:space-y-6" [formGroup]="loginForm">
+            <div>
+              <label for="email" class="block text-md font-medium text-black">Email</label>
+              <input formControlName="email" type="email" name="email" id="email" class="default-input block w-full p-2.5" required />
+            </div>
+            <div>
+              <label for="password" class="block text-md font-medium text-black">Senha</label>
+              <div class="relative">
+                <input formControlName="password" type="password" name="password" id="password" class="default-input block w-full p-2.5 pr-10" required />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <i class="bx bx-show cursor-pointer" (click)="showPassword()"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <div class="flex items-start">
+                <a
+                  routerLink="/login-usuario/forgot-password"
+                  routerLinkActive="active"
+                  class="text-sm font-medium register hover:underline"
+                >
+                  <button type="button" class="rounded-lg text-blue-500 bg-white font-medium text-sm py-2.5 px-4 mb-2 hover:underline">
+                    Esqueceu a senha?
+                  </button>
+                </a>
+              </div>
+              <div class="flex items-end">
+                <a
+                  routerLink="/login-usuario/register"
+                  routerLinkActive="active"
+                  class="text-sm font-medium register hover:underline"
+                >
+                  <button type="button" class="rounded-lg text-blue-500 bg-white font-medium text-sm py-2.5 px-4 mb-2 hover:underline">
+                    Registrar
+                  </button>
+                </a>
+              </div>
+            </div>
+            <div class="flex items-center justify-center">
+              <button-primary (click)="login()" [value]="value"></button-primary>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer
+    [ngStyle]="{
+      'background-color': styleService.colorVariables['bg_primary_color']
+    }"
+  >
+    <div class="w-full mx-auto md:py-4 p-4">
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <img  src="assets/white-codiub.png" alt="" width="4%" />
+        <a href="https://codiub.com.br/" target="_blank"></a>
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          © 2024
+          <a href="https://codiub.com.br/" target="_blank" class="hover:underline">Codiub</a>
+          - Todos os direitos reservados.
+        </span>
+      </div>
+    </div>
+  </app-footer>
+</div>

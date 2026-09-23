@@ -1,0 +1,839 @@
+<div>
+  <app-navbar></app-navbar>
+  <spinner class="w-full h-full"></spinner>
+  <section class="flex items-center justify-center p-5">
+    <div
+      class="md:w-screen lg:w-screen sm:flex sm:justify-center md:flex md:justify-center"
+    >
+      <div
+        class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-4xl xl:p-0"
+      >
+        <!-- <div class="flex items-center justify-center">
+          <img
+            class="m-7 mb-0"
+            src="assets/codiub-logo.png"
+            alt=""
+            width="15%"
+          />
+        </div> -->
+
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h1
+            class="primary-color-text text-lg font-bold text-start leading-tight tracking-tight text-center"
+          >
+            Cadastro para Padrão
+          </h1>
+
+          <div class="m-2">
+            <ol
+              class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base"
+            >
+              <li
+                id="stepper-one"
+                class="activated flex md:w-full items-center text-blue-600 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10"
+              >
+                <span
+                  class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 nowrap"
+                >
+                  <mat-icon class="text-blue-500">person</mat-icon>
+
+                  <span class="hidden sm:inline-flex sm:ms-2"
+                    >Info. Pessoal</span
+                  >
+                </span>
+              </li>
+              <li
+                id="stepper-two"
+                class="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10"
+              >
+                <span
+                  class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 nowrap"
+                >
+                  <!-- <mat-icon class="text-blue-500">check_circle</mat-icon> -->
+                  <mat-icon class="text-gray-400">home</mat-icon>
+
+                  <span class="hidden sm:inline-flex sm:ms-2"
+                    >Info. Complementares</span
+                  >
+                </span>
+              </li>
+              <li id="stepper-three" class="">
+                <span
+                  class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 nowrap"
+                >
+                  <mat-icon class="text-gray-400">assignment</mat-icon>
+
+                  <span class="hidden sm:inline-flex sm:ms-2"
+                    >Info. Complementares</span
+                  ></span
+                >
+              </li>
+            </ol>
+
+            <!-- <button-primary
+              (click)="changeForm()"
+              [value]="'Proximo'"
+            ></button-primary> -->
+          </div>
+
+          <div class="">
+            <div class="flex">
+              <small class="text-red-600">Campos obrigatórios *</small>
+            </div>
+          </div>
+
+          <form
+            class="space-y-4 md:space-y-6"
+            [formGroup]="registerForm"
+            *ngIf="registerForm"
+          >
+            <!-- PESSOAL -->
+            <div id="form-one">
+              <div class=" mb-2">
+                <p
+                  class="p-2 bg-yellow-50 font-semibold "
+                  style="border-radius: 10px"
+                >
+                  * Sempre inclua um endereço de e-mail válido durante o
+                  cadastro.<br />
+                </p>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    for="name"
+                    class="block text-md font-medium text-gray-500"
+                    >Nome Completo
+                    <small class="text-red-600">*</small>
+                  </label>
+                  <input
+                    formControlName="name"
+                    type="text"
+                    maxlength="255"
+                    name="name"
+                    id="name"
+                    class="default-input w-full p-2.5"
+                    required=""
+                  />
+
+                  <div
+                    id="name-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched"
+                  >
+                    Nome é obrigatório
+                  </div>
+                </div>
+                <div class="col-span-1">
+                  <label
+                    for="cpf"
+                    class="block text-md font-medium text-gray-500"
+                    >CPF <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    #inputCpf
+                    formControlName="cpf"
+                    type="text"
+                    name="cpf"
+                    id="cpf"
+                    placeholder="___.___.___-__"
+                    (blur)="validarCPF()"
+                    mask="000.000.000-00"
+                    class="default-input w-full p-2.5"
+                    required=""
+                  />
+
+                  <div
+                    id="cpf-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('cpf')?.errors?.['required'] && registerForm.get('cpf')?.touched"
+                  >
+                    CPF é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col w-full">
+                  <label
+                    for="data_de_nascimento"
+                    class="block text-md font-medium text-gray-500"
+                    >Data de nascimento
+                    <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="data_de_nascimento"
+                    type="date"
+                    name="data_de_nascimento"
+                    id="data_de_nascimento"
+                    class="default-input w-full p-2.5"
+                    required=""
+                    [max]="maxDate"
+                  />
+
+                  <div
+                    id="data_de_nascimento-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('data_de_nascimento')?.errors?.['required'] && registerForm.get('data_de_nascimento')?.touched"
+                  >
+                    Data de nascimento é obrigatório
+                  </div>
+                </div>
+
+                <div class="col w-full">
+                  <label
+                    for="telefone"
+                    class="block text-md font-medium text-gray-500"
+                    >Celular <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="telefone"
+                    type="text"
+                    name="telefone"
+                    id="telefone"
+                    class="default-input w-full p-2.5"
+                    required=""
+                    mask="00 00000-0000"
+                  />
+
+                  <div
+                    id="telefone-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('telefone')?.errors?.['required'] && registerForm.get('telefone')?.touched"
+                  >
+                    Celular é obrigatório
+                  </div>
+                </div>
+              </div>
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col">
+                  <label
+                    for="email"
+                    class="block text-md font-medium text-gray-500"
+                    >Email <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="default-input w-full p-2.5"
+                    required=""
+                  />
+
+                  <div
+                    id="email-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
+                  >
+                    Email é obrigatório
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block text-md font-medium text-gray-500"
+                    >Senha <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="default-input w-full p-2.5"
+                    required=""
+                  />
+                  <small class="text-blue-600">Mínimo 8 caracteres</small>
+
+                  <div
+                    id="password-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+                  >
+                    Senha é obrigatória
+                  </div>
+                </div>
+                <!-- <div>
+              <label
+                for="passwordConfirm"
+                class="block text-md font-medium text-gray-500"
+                >Confirmar senha <small class="text-red-600">*</small></label
+              >
+              <input
+                formControlName="passwordConfirm"
+                type="password"
+                name="passwordConfirm"
+                id="passwordConfirm"
+                class="default-input w-full p-2.5"
+                required=""
+              />
+
+              <div
+                class="mensagem__erro"
+                *ngIf="registerForm.get('passwordConfirm')?.errors?.['required'] && registerForm.get('passwordConfirm')?.touched"
+              >
+                Confirme a senha
+              </div>
+            </div> -->
+              </div>
+
+              <div class="flex justify-between">
+                <button-primary
+                  [value]="'voltar'"
+                  (click)="returnLogin()"
+                ></button-primary>
+
+                <button-primary
+                  [value]="'Próximo'"
+                  (click)="nextForm('form-one', true)"
+                ></button-primary>
+              </div>
+            </div>
+
+            <!-- ENDEREÇO -->
+            <div id="form-two" style="display: none">
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="nacionalidade"
+                    >Nacionalidade
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="nacionalidade"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    id="nacionalidade"
+                    aria-label="nacionalidade"
+                    required
+                  />
+
+                  <div
+                    id="nacionalidade-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('nacionalidade')?.errors?.['required'] && registerForm.get('nacionalidade')?.touched"
+                  >
+                    Nacionalidade é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="naturalidade"
+                    >Naturalidade
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="naturalidade"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    id="naturalidade"
+                    aria-label="naturalidade"
+                    required
+                  />
+
+                  <div
+                    id="naturalidade-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('naturalidade')?.errors?.['required'] && registerForm.get('naturalidade')?.touched"
+                  >
+                    Naturalidade é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="filiacao_1"
+                    >Filiação 1
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="filiacao_1"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    id="filiacao_1"
+                    aria-label="filiacao_1"
+                    required
+                  />
+
+                  <div
+                    id="filiacao_1-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('filiacao_1')?.errors?.['required'] && registerForm.get('filiacao_1')?.touched"
+                  >
+                    Filiação é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="filiacao_2"
+                    >Filiação 2
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="filiacao_2"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    id="filiacao_2"
+                    aria-label="filiacao_2"
+                    required
+                  />
+
+                  <div
+                    id="filiacao_2-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('filiacao_2')?.errors?.['required'] && registerForm.get('filiacao_2')?.touched"
+                  >
+                    Filiação 2 é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="cep"
+                    >CEP <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    #inputCep
+                    formControlName="cep"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    placeholder="_____-___"
+                    id="cep"
+                    (blur)="findByCep()"
+                    aria-label="cep"
+                    required
+                    mask="00000-000"
+                  />
+
+                  <div
+                    id="cep-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('cep')?.errors?.['required'] && registerForm.get('cep')?.touched"
+                  >
+                    CEP é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="rua"
+                    >Rua <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="rua"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    maxlength="255"
+                    id="rua"
+                    aria-label="rua"
+                    required
+                  />
+
+                  <div
+                    id="rua-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('rua')?.errors?.['required'] && registerForm.get('rua')?.touched"
+                  >
+                    Rua é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="numero"
+                    >Número <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="numero"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    maxlength="7"
+                    id="numero"
+                    aria-label="numero"
+                    required
+                  />
+
+                  <div
+                    id="numero-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('numero')?.errors?.['required'] && registerForm.get('numero')?.touched"
+                  >
+                    Número é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="complemento"
+                    >Complemento
+                  </label>
+                  <input
+                    formControlName="complemento"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    maxlength="30"
+                    id="complemento"
+                    aria-label="complemento"
+                  />
+                </div>
+              </div>
+
+              <div class="grid gap-5">
+                <div class="col-span-2">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="bairro"
+                    >Bairro <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="bairro"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    maxlength="255"
+                    id="bairro"
+                    aria-label="bairro"
+                    required
+                  />
+
+                  <div
+                    id="bairro-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('bairro')?.errors?.['required'] && registerForm.get('bairro')?.touched"
+                  >
+                    Bairro é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="cidade"
+                    >Cidade <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="cidade"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    maxlength="30"
+                    id="cidade"
+                    aria-label="cidade"
+                    required
+                  />
+
+                  <div
+                    id="cidade-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('cidade')?.errors?.['required'] && registerForm.get('cidade')?.touched"
+                  >
+                    Cidade é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="estado"
+                    >Estado <small class="text-red-600">*</small></label
+                  >
+                  <input
+                    formControlName="estado"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    maxlength="2"
+                    id="estado"
+                    aria-label="estado"
+                    required
+                  />
+
+                  <div
+                    id="estado-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('estado')?.errors?.['required'] && registerForm.get('estado')?.touched"
+                  >
+                    Estado é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex justify-between">
+                <button-primary
+                  [value]="'Voltar'"
+                  class="cursor-pointer"
+                  (click)="nextForm('form-two', false)"
+                ></button-primary>
+
+                <button-primary
+                  [value]="'Próximo'"
+                  class="cursor-pointer"
+                  (click)="nextForm('form-two', true)"
+                ></button-primary>
+              </div>
+            </div>
+
+            <div id="form-three" style="display: none">
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="rg"
+                    >Rg
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="rg"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    id="rg"
+                    aria-label="rg"
+                    required
+                  />
+
+                  <div
+                    id="rg-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('rg')?.errors?.['required'] && registerForm.get('rg')?.touched"
+                  >
+                    Rg é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="orgao"
+                    >Orgão Expedidor
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="orgao"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    id="orgao"
+                    aria-label="orgao"
+                    required
+                  />
+
+                  <div
+                    id="orgao-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('orgao')?.errors?.['required'] && registerForm.get('orgao')?.touched"
+                  >
+                    Orgão é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="data_expedicao"
+                    >Data de expedição
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="data_expedicao"
+                    class="default-input w-full p-2.5"
+                    type="date"
+                    id="data_expedicao"
+                    aria-label="data_expedicao"
+                    required
+                  />
+
+                  <div
+                    id="data_expedicao-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('data_expedicao')?.errors?.['required'] && registerForm.get('data_expedicao')?.touched"
+                  >
+                    Data de expedição é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="estado_expedicao"
+                    >Estado Expedição
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+
+                  <select
+                    id="estado_expedicao"
+                    formControlName="estado_expedicao"
+                    class="default-input w-full p-2.5"
+                  >
+                    <option value="" disabled selected>
+                      Selecione o estado
+                    </option>
+                    <option
+                      *ngFor="let estado of this.estados"
+                      [value]="estado.sigla"
+                    >
+                      {{ estado.nome }}
+                    </option>
+                  </select>
+
+                  <div
+                    id="estado_expedicao-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('estado_expedicao')?.errors?.['required'] && registerForm.get('estado_expedicao')?.touched"
+                  >
+                    Estado é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="num_cnh"
+                    >CNH
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+                  <input
+                    formControlName="num_cnh"
+                    class="default-input w-full p-2.5"
+                    type="text"
+                    id="num_cnh"
+                    aria-label="num_cnh"
+                    required
+                    mask="00000000000"
+                  />
+
+                  <div
+                    id="num_cnh-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('num_cnh')?.errors?.['required'] && registerForm.get('num_cnh')?.touched"
+                  >
+                    CNH é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    class="block text-md font-medium text-gray-500"
+                    for="categoria_cnh"
+                    >Categoria CNH
+                    <small class="text-red-600 required-input">*</small>
+                  </label>
+
+                  <select
+                    id="categoria_cnh"
+                    formControlName="categoria_cnh"
+                    class="default-input w-full p-2.5"
+                  >
+                    <option value="" disabled selected>
+                      Selecione a categoria
+                    </option>
+                    <option
+                      *ngFor="let categoria of categoria_cnh"
+                      [value]="categoria.code"
+                    >
+                      {{ categoria.code }}
+                    </option>
+                  </select>
+
+                  <div
+                    id="categoria_cnh-message-error"
+                    class="mensagem__erro"
+                    *ngIf="registerForm.get('categoria_cnh')?.errors?.['required'] && registerForm.get('estado_expedicao')?.touched"
+                  >
+                    Categoria CNH é obrigatório
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <div class="flex gap-2">
+                  <div>
+                    <input
+                      id="default-checkbox"
+                      type="checkbox"
+                      formControlName="valid"
+                      value="valid"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                  </div>
+                  <div class="flex">
+                    <p>
+                      Li e concordo com
+                      <span
+                        ><a
+                          target="_blank"
+                          class="text-blue-500"
+                          routerLink="/politica/termos_uso"
+                          routerLinkActive="active"
+                        >
+                          termos de uso
+                        </a></span
+                      >
+
+                      e
+                      <span>
+                        <a
+                          target="_blank"
+                          class="text-blue-500"
+                          routerLink="/politica/privacidade"
+                          routerLinkActive="active"
+                        >
+                          privacidade
+                        </a>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex justify-between md:mt-2 mt-5">
+                <button-primary
+                  [value]="'Voltar'"
+                  class="cursor-pointer"
+                  (click)="nextForm('form-three', false)"
+                ></button-primary>
+
+                <button-primary
+                  [value]="'Register'"
+                  class="cursor-pointer"
+                  (click)="nextForm('form-three', true)"
+                ></button-primary>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-end" style="display: none">
+                <button-primary
+                  (click)="register()"
+                  [value]="value"
+                ></button-primary>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

@@ -5,28 +5,10 @@
     <div class="sidebar h-auto">
       <div class="hidden" id="details">
         <div class="logo-details">
-          <div class="logo_name">PC</div>
+          <div class="logo_name">PB</div>
           <i (click)="openMenu()" class="bx bx-menu btn-menu" id="btn"></i>
-          <!-- <img
-            (click)="openMenu()"
-            class="btn-menu"
-            src="assets/icon/menu.svg"
-            alt=""
-            id="btn"
-          /> -->
         </div>
       </div>
-
-      <!-- <div class="w-full relative" id="search-input">
-        <input
-          type="text"
-          class="default-input block w-full p-2.5 pr-15"
-          (keyup)="applyFilter($event)"
-        />
-        <div class="absolute inset-y-0 right-2 flex items-center pr-3">
-          <mat-icon class="icon-search">search</mat-icon>
-        </div>
-      </div> -->
 
       <div class="menu-scroll-container">
         <span *ngFor="let item of menu" class="w-full">
@@ -42,15 +24,7 @@
               >
                 <div class="list-name">
                   <div class="display">
-                    <!-- <mat-icon>{{ item.iconName }}</mat-icon> -->
-                    <img
-                      src="assets/icon/{{ item.iconName }}.svg"
-                      class="icon"
-                      id="{{ item.iconName }}"
-                    />
-                    <!-- <svg class="icon-black">
-                      <use xlink:href="assets/icon/{{item.iconName}}.svg#icon-id"></use>
-                    </svg> -->
+                    <img src="assets/icon/{{ item.iconName }}.svg" class="icon" id="{{item.iconName}}"/>
                     <span class="pl-5 display-name w-auto text-wrap">
                       {{ item.displayName }}</span
                     >
@@ -74,7 +48,7 @@
                 >
                   <div class="flex justify-center items-center">
                     <img src="assets/icon/{{ child.iconName }}.svg" />
-                    <span class="pl-5 display-name w-auto text-wrap">{{
+                    <span class="pl-5 display-name  w-auto text-wrap">{{
                       child.displayName
                     }}</span>
                   </div>
@@ -95,7 +69,7 @@
               class="flex justify-start items-center w-full list cursor-pointer"
             >
               <div class="flex justify-center items-center">
-                <img src="assets/icon/{{ item.iconName }}.svg" />
+                <img src="assets/icon/{{item.iconName}}.svg">
                 <span class="pl-5 display-name">{{ item.displayName }}</span>
               </div>
             </a>
@@ -104,12 +78,12 @@
       </div>
     </div>
 
-    <div class="home-section h-full flex-1 overflow-x-hidden">
+    <div class="home-section h-full">
       <router-outlet></router-outlet>
     </div>
   </div>
 
   <div>
-    <app-footer [value]="tipoPagina"></app-footer>
+    <app-footer></app-footer>
   </div>
 </div>

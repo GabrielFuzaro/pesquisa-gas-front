@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Deseja realmente excluir?</h1>
+<div mat-dialog-actions class="center">
+  <button-primary
+    class="m-5"
+    [value]="'Excluir'"
+    [mat-dialog-close]="data.value"
+  ></button-primary>
+  <button-secundary
+    class="m-5"
+    [value]="'Cancelar'"
+    (click)="onNoClick()"
+  ></button-secundary>
+</div>

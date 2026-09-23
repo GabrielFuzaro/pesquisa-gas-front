@@ -1,0 +1,66 @@
+<div class="h-screen">
+  <app-navbar></app-navbar>
+  <spinner class="w-full h-full"></spinner>
+
+  <section class="flex items-center justify-center w-full h-4/5">
+    <div
+      class="max-sm:w-full max-sm:m-5 sm:w-full sm:m-5 sm:flex sm:justify-center"
+    >
+      <div
+        class="bg-white w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0"
+      >
+        <div class="flex items-center justify-center">
+          <img
+            class="m-7 mb-0"
+            src="assets/codiub-logo.png"
+            alt=""
+            width="30%"
+          />
+        </div>
+
+        <div class="p-6 pt-0 space-y-4 md:space-y-6 sm:p-8">
+          <p
+            class="primary-color-text text-lg font-bold text-start leading-tight tracking-tight"
+          >
+            Esqueci a senha
+          </p>
+          <form class="space-y-4 md:space-y-6" [formGroup]="loginForm">
+            <div>
+              <label for="email" class="block text-md font-medium text-black"
+                >Email</label
+              >
+              <input
+                formControlName="email"
+                type="email"
+                name="email"
+                id="email"
+                class="default-input block w-full p-2.5"
+                required=""
+              />
+            </div>
+
+            <div class="">
+              <div class="flex">
+                <p class="p-2 text-sm font-semibold">
+                  O email de recuperação poderá demorar até 24 horas para ser
+                  enviado.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end">
+              <div class="flex items-end">
+                <button-primary
+                  (click)="submit()"
+                  [value]="value"
+                ></button-primary>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

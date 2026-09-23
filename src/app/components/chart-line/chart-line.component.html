@@ -1,0 +1,23 @@
+<div class="mb-3">
+    <select 
+        [(ngModel)]="periodoSelecionado" 
+        (ngModelChange)="trocarPeriodo($event)"
+        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 cursor-pointer bg-white">
+        
+        <option *ngFor="let periodo of periodos" [ngValue]="periodo">
+            Últimos {{ periodo }} dias
+        </option>
+        
+    </select>
+</div>
+
+<apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [title]="chartOptions.title"
+    [stroke]="chartOptions.stroke"
+    [xaxis]="chartOptions.xaxis"
+    [tooltip]="chartOptions.tooltip"
+    [legend]="chartOptions.legend"
+    [yaxis]="chartOptions.yaxis">
+</apx-chart>
