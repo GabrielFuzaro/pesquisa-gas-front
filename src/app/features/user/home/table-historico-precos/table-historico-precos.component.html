@@ -1,14 +1,18 @@
-<div *ngIf="competenciaFormulario" class="w-full">
+<div *ngIf="competenciaFormulario" class="mx-5">
     <div class="flex flex-col gap-3">
         <div *ngFor="let competencia of competencias">
 
             <button
                 type="button"
                 (click)="selecionarCompetencia(competencia)"
-                class="flex w-full items-center justify-between rounded-lg border border-gray-200 px-6 py-4 text-left transition-colors hover:bg-gray-100"
+                class="flex w-full items-center justify-between rounded-lg border px-6 py-4 text-left transition-colors"
+                [ngClass]="estaSelecionada(competencia)
+                    ? 'bg-blue-600 border-blue-600'
+                    : 'bg-white border-gray-200 hover:bg-gray-100'"
             >
                 <span
                     class="font-bold text-xl text-black"
+                    [ngClass]="estaSelecionada(competencia) ? 'text-white' : 'text-black'"
                 >
                     {{ competencia.mesExtenso }}/{{ competencia.ano }}
                 </span>
@@ -22,25 +26,25 @@
             </button>
             
             <div *ngIf="estaSelecionada(competencia)">
-                <div class="flex gap-4 flex-wrap w-full">
+                <div class="flex gap-4 justify-around flex-wrap w-full border border-gray-200">
                     <button
                         type="button"
                         *ngFor="let tamanho of tamanhos"
                         (click)="selecionarTamanho(tamanho)"
-                        class="rounded-lg px-6 py-4 shadow-sm text-left transition-colors"
-                        [class.bg-blue-500]="tamanhoSelecionado?.id === tamanho.id"
+                        class="rounded-lg px-10 w-52 h-40 max-w-52 max-h-40 py-8 shadow-sm text-left transition-colors my-4 border border-gray-200 hover:bg-blue-200"
+                        [class.bg-blue-200]="tamanhoSelecionado?.id === tamanho.id"
                         [class.bg-gray-100]="tamanhoSelecionado?.id !== tamanho.id"
                     >
                         <p
                             class="text-xl font-bold"
-                            [class.text-white]="tamanhoSelecionado?.id === tamanho.id"
+                            [class.text-[#14263d]]="tamanhoSelecionado?.id === tamanho.id"
                             [class.text-[#14263d]]="tamanhoSelecionado?.id !== tamanho.id"
                         >
                             {{ tamanho.descricao }}
                         </p>
                         <p
                             class="text-sm"
-                            [class.text-white]="tamanhoSelecionado?.id === tamanho.id"
+                            [class.text-gray-500]="tamanhoSelecionado?.id === tamanho.id"
                             [class.text-gray-500]="tamanhoSelecionado?.id !== tamanho.id"
                         >
                             {{ tamanho.codigo }}
@@ -141,9 +145,9 @@
                     <button
                         type="button"
                         (click)="alternarTabelaGeral()"
-                        class="text-sm text-[#14263d] underline"
+                        class="text-sm text-blue-500 underline bg-blue-100 px-4 py-2 font-bold rounded-2xl decoration-transparent hover:bg-blue-200"
                     >
-                        {{ mostrarTabela ? 'Ocultar tabela completa' : 'Ver tabela completa' }}
+                        {{ mostrarTabela ? 'Ocultar todos os dados do mês' : 'Ver todos os dados do mês' }}
                     </button>
                 </div>
 
