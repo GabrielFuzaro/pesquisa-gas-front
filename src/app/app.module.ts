@@ -35,6 +35,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { ButtonSecundaryComponent } from './components/button-secundary/button-secundary.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BuscarTamanhosFiltroComponent } from './features/user/home/buscar-tamanhos-filtro/buscar-tamanhos-filtro.component';
+import { OrdemBuscaFiltroComponent } from './features/user/home/ordem-busca-filtro/ordem-busca-filtro.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { BuscarTamanhosFiltroComponent } from './features/user/home/buscar-taman
     DatepickerComponent,
     DialogComponent,
     ButtonSecundaryComponent,
-    BuscarTamanhosFiltroComponent
+    BuscarTamanhosFiltroComponent,
+    OrdemBuscaFiltroComponent
   ],
   imports: [
     BrowserModule,

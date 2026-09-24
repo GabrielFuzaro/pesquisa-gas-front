@@ -24,6 +24,8 @@ export class HomeComponent {
   anoAplicado?: number;
   estabelecimentoAplicado?: number;
   tamanhoAplicado?: number;
+  ordemSelecionada: 'ASC' | 'DESC' = 'ASC';
+  ordemAplicada: 'ASC' | 'DESC' = 'ASC';
 
 
   competenciaFormulario = new FormGroup({
@@ -67,6 +69,10 @@ export class HomeComponent {
     this.tamanhoSelecionado = id;
   }
 
+  filtrarOrdem(ordem: 'ASC' | 'DESC') {
+    this.ordemSelecionada = ordem;
+  }
+
   filtrosAplicados = 0;
   
   aplicarFiltros() {
@@ -74,6 +80,7 @@ export class HomeComponent {
     this.anoAplicado = this.anoSelecionado;
     this.estabelecimentoAplicado = this.estabelecimentoSelecionado;
     this.tamanhoAplicado = this.tamanhoSelecionado;
+    this.ordemAplicada = this.ordemSelecionada;
     this.filtrosAplicados++;
   }
 }

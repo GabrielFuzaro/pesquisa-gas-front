@@ -1,0 +1,29 @@
+<div class="w-full">
+  <label class="block text-sm font-medium mb-2">Ordenar por preço</label>
+
+  <div class="flex gap-2">
+    <button
+      type="button"
+      (click)="selecionarOrdem('ASC')"
+      class="flex-1 px-4 py-3 rounded-md border text-sm font-medium transition-colors"
+      [class.bg-blue-500]="ordem === 'ASC'"
+      [class.text-white]="ordem === 'ASC'"
+      [class.border-gray-300]="ordem !== 'ASC'"
+      [class.text-gray-700]="ordem !== 'ASC'"
+    >
+      Menor preço
+    </button>
+
+    <button
+      type="button"
+      (click)="selecionarOrdem('DESC')"
+      class="flex-1 px-4 py-3 rounded-md border text-sm font-medium transition-colors"
+      [class.bg-blue-500]="ordem === 'DESC'"
+      [class.text-white]="ordem === 'DESC'"
+      [class.border-gray-300]="ordem !== 'DESC'"
+      [class.text-gray-700]="ordem !== 'DESC'"
+    >
+      Maior preço
+    </button>
+  </div>
+</div>

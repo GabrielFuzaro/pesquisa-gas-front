@@ -42,6 +42,7 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
   @Input() tamanhoId?: number;
   @Input() estabelecimentoId?: number;
   @Input() filtrosAplicados = 0;
+  @Input() filtroOrder: 'ASC' | 'DESC' = 'ASC';
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -102,7 +103,7 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
         this.historicoService.buscarMenorPrecoAtuais(
           0,
           10,
-          'ASC',
+          this.filtroOrder,
           this.mes!,
           this.ano!,
           this.estabelecimentoId,
