@@ -16,7 +16,7 @@ export class BuscarTamanhosFiltroComponent {
 
   tamanhos: TamanhoBotijao[] = [];
 
-  @Output() tamanhoSelecionado = new EventEmitter<number>();
+  @Output() tamanhoSelecionado = new EventEmitter<number | undefined>();
 
   tamanhoFormulario = new FormGroup({
     tamanho: new FormControl('', Validators.required)
@@ -37,8 +37,8 @@ export class BuscarTamanhosFiltroComponent {
     }
   }
 
-    selecionarTamanho(tamanho: number): void {
-
-    this.tamanhoSelecionado.emit(tamanho);
-  }
+    selecionarTamanho(valor: string): void {
+      const tamanho = valor === '' ? undefined : Number(valor);
+      this.tamanhoSelecionado.emit(tamanho);
+    }
 }

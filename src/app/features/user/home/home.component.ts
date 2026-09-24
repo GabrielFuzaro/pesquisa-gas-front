@@ -65,7 +65,7 @@ export class HomeComponent {
     this.estabelecimentoSelecionado = id;
   }
 
-  filtrarTamanho(id: number){
+  filtrarTamanho(id: number | undefined){
     this.tamanhoSelecionado = id;
   }
 
