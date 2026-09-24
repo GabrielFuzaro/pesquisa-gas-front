@@ -1,0 +1,32 @@
+<form
+    *ngIf="tamanhoFormulario"
+    [formGroup]="tamanhoFormulario"
+    class="w-full"
+>
+    <div class="block md:flex md:justify-between justify-center gap-5">
+        <div class="col w-full">
+
+            <label class="block text-base font-medium mb-2" for="tamanho">
+                Tamanho Gás
+            </label>
+
+            <select
+                id="tamanho"
+                formControlName="tamanho"
+                (change)="selecionarTamanho($any($event.target).value)"
+                class="w-full p-4 text-base border rounded-md"
+            >
+                <option value="" disabled selected>
+                    Selecione o tamanho
+                </option>
+
+                <option
+                    *ngFor="let tamanho of tamanhos"
+                    [value]="tamanho.id"
+                >
+                    {{tamanho.descricao}}
+                </option>
+            </select>
+
+        </div>
+    </div>

@@ -24,6 +24,11 @@
   >
   </app-buscar-estabelecimentos-filtro>
 
+  <app-buscar-tamanhos-filtro
+  class="w-full md:w-96"
+    (tamanhoSelecionado)="filtrarTamanho($event)">
+    </app-buscar-tamanhos-filtro>
+
   <button
     type="button"
     (click)="aplicarFiltros()"
@@ -39,6 +44,7 @@
     [mes]="mesAplicado"
     [ano]="anoAplicado"
     [estabelecimentoId]="estabelecimentoAplicado"
+    [tamanhoId]="tamanhoAplicado"
     [filtrosAplicados]="filtrosAplicados"
   >
   </app-buscar-historicos-filtro>

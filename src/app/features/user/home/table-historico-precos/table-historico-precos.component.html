@@ -20,92 +20,124 @@
                     [class.rotate-180]="estaSelecionada(competencia)"
                 />
             </button>
+            
+            <div *ngIf="estaSelecionada(competencia)">
+                <div class="flex gap-4 flex-wrap w-full">
+                    <button
+                        type="button"
+                        *ngFor="let tamanho of tamanhos"
+                        (click)="selecionarTamanho(tamanho)"
+                        class="rounded-lg px-6 py-4 shadow-sm text-left transition-colors"
+                        [class.bg-blue-500]="tamanhoSelecionado?.id === tamanho.id"
+                        [class.bg-gray-100]="tamanhoSelecionado?.id !== tamanho.id"
+                    >
+                        <p
+                            class="text-xl font-bold"
+                            [class.text-white]="tamanhoSelecionado?.id === tamanho.id"
+                            [class.text-[#14263d]]="tamanhoSelecionado?.id !== tamanho.id"
+                        >
+                            {{ tamanho.descricao }}
+                        </p>
+                        <p
+                            class="text-sm"
+                            [class.text-white]="tamanhoSelecionado?.id === tamanho.id"
+                            [class.text-gray-500]="tamanhoSelecionado?.id !== tamanho.id"
+                        >
+                            {{ tamanho.codigo }}
+                        </p>
+                    </button>
+                </div>
+            </div>
 
-            <div *ngIf="estaSelecionada(competencia) && mostrarTabelaMenorPreco" class="w-full mt-3 rounded-lg border border-gray-200 overflow-hidden">
-                <table class="w-full table-fixed border-collapse">
-                    <thead>
-                        <tr class="bg-gray-50">
-                            <th class="w-1/2 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
-                                Estabelecimento
-                            </th>
-                            <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
-                                Tamanho
-                            </th>
-                            <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-green-500">
-                                Preço
-                            </th>
-                            <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
-                                Data
-                            </th>
-                        </tr>
-                    </thead>
+            <div *ngIf="estaSelecionada(competencia) && tamanhoSelecionado && mostrarTabelaMenorPreco" class="w-full mt-3">
+                <div class="rounded-lg border border-green-300 shadow-md overflow-hidden">
+                    <table class="w-full table-fixed border-collapse">
+                        <thead>
+                            <tr class="bg-green-50 border-b border-gray-300">
+                                <th class="w-1/2 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-green-900">
+                                    Estabelecimento (menor preço)
+                                </th>
+                                <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-green-900">
+                                    Tamanho
+                                </th>
+                                <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-green-900">
+                                    Valor
+                                </th>
+                                <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-green-900">
+                                    Data
+                                </th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <ng-container *ngFor="let historicoMes of menorPrecoHistorico">
-                            <ng-container *ngFor="let historico of historicoMes.historicos">
-                                <tr
-                                    *ngFor="let info of historico.informacoes"
-                                    class="border-t border-gray-100 hover:bg-gray-50"
-                                >
-                                    <td class="py-4 px-6 text-left">
-                                        <span class="text-base font-bold text-[#14263d] truncate">
-                                            {{ historico.estabelecimento }}
-                                        </span>
-                                    </td>
-                                    <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
-                                        {{ info.tamanhoCodigo }}
-                                    </td>
-                                    <td class="py-4 px-6 text-left">
-                                        <span class="inline-block rounded-md bg-green-100 px-2.5 py-1 text-sm font-semibold text-green-500 whitespace-nowrap">
-                                            R$ {{ info.preco | number:'1.2-2' }}
-                                        </span>
-                                    </td>
-                                    <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
-                                        {{ info.data | date:'dd/MM/yyyy' }}
-                                    </td>
-                                </tr>
+                        <tbody>
+                            <ng-container *ngFor="let historicoMes of menorPrecoHistorico">
+                                <ng-container *ngFor="let historico of historicoMes.historicos">
+                                    <tr
+                                        *ngFor="let info of historico.informacoes"
+                                        class="border-t border-gray-100 hover:bg-gray-50"
+                                    >
+                                        <td class="py-4 px-6 text-left">
+                                            <span class="text-base font-bold text-green-900 truncate">
+                                                {{ historico.estabelecimento }}
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
+                                            {{ info.tamanhoCodigo }}
+                                        </td>
+                                        <td class="py-4 px-6 text-left">
+                                            <span class="inline-block rounded-md bg-green-100 px-2.5 py-1 text-sm font-semibold text-green-500 whitespace-nowrap">
+                                                R$ {{ info.preco | number:'1.2-2' }}
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-6 text-left text-sm text-gray-500 whitespace-nowrap">
+                                            {{ info.data | date:'dd/MM/yyyy' }}
+                                        </td>
+                                    </tr>
+                                </ng-container>
                             </ng-container>
-                        </ng-container>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
 
-                <table class="w-full table-fixed border-collapse">
-                    <thead>
-                        <tr class="bg-gray-50">
-                            <th class="w-1/3 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
-                                Menor Preço
-                            </th>
-                            <th class="w-1/3 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
-                                Média
-                            </th>
-                            <th class="w-1/3 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
-                                Variação
-                            </th>
-                        </tr>
-                    </thead>
+                <div class="rounded-lg border border-gray-200 overflow-hidden mt-3">
+                    <table class="w-full table-fixed border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="w-1/3 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
+                                    Menor Preço
+                                </th>
+                                <th class="w-1/3 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
+                                    Preço Médio
+                                </th>
+                                <th class="w-1/3 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
+                                    Variação
+                                </th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <tr class="border-t border-gray-100 hover:bg-gray-50">
-                            <td class="py-4 px-6 text-left">
-                                <span class="inline-block rounded-md bg-green-100 px-2.5 py-1 text-sm font-semibold text-green-500 whitespace-nowrap">
-                                    R$ {{ menorPreco | number:'1.2-2' }}
-                                </span>
-                            </td>
-                            <td class="py-4 px-6 text-left">
-                                <span class="inline-block rounded-md bg-gray-100 px-2.5 py-1 text-sm font-semibold text-[#14263d] whitespace-nowrap">
-                                    R$ {{ mediaPreco | number:'1.2-2' }}
-                                </span>
-                            </td>
-                            <td class="py-4 px-6 text-left">
-                                <span class="inline-block rounded-md bg-gray-100 px-2.5 py-1 text-sm font-semibold text-[#14263d] whitespace-nowrap">
-                                    {{ variacaoPreco }}
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <tr class="border-t border-gray-100 hover:bg-gray-50">
+                                <td class="py-4 px-6 text-left">
+                                    <span class="inline-block rounded-md bg-green-100 px-2.5 py-1 text-sm font-semibold text-green-500 whitespace-nowrap">
+                                        R$ {{ menorPreco | number:'1.2-2' }}
+                                    </span>
+                                </td>
+                                <td class="py-4 px-6 text-left">
+                                    <span class="inline-block rounded-md bg-gray-100 px-2.5 py-1 text-sm font-semibold text-[#14263d] whitespace-nowrap">
+                                        R$ {{ mediaPreco | number:'1.2-2' }}
+                                    </span>
+                                </td>
+                                <td class="py-4 px-6 text-left">
+                                    <span class="inline-block rounded-md bg-gray-100 px-2.5 py-1 text-sm font-semibold text-[#14263d] whitespace-nowrap">
+                                        {{ variacaoPreco }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <div class="flex justify-center py-3 border-t border-gray-100">
+                <div class="flex justify-center py-3">
                     <button
                         type="button"
                         (click)="alternarTabelaGeral()"
@@ -114,6 +146,7 @@
                         {{ mostrarTabela ? 'Ocultar tabela completa' : 'Ver tabela completa' }}
                     </button>
                 </div>
+
             </div>
 
             <div *ngIf="estaSelecionada(competencia) && mostrarTabela" class="w-full mt-3 rounded-lg border border-gray-200 overflow-hidden">
@@ -122,9 +155,6 @@
                         <tr class="bg-gray-50">
                             <th class="w-1/2 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
                                 Estabelecimento
-                            </th>
-                            <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
-                                Tamanho
                             </th>
                             <th class="w-1/6 py-4 px-6 text-left text-xs font-bold uppercase tracking-wide text-gray-500">
                                 Tamanho

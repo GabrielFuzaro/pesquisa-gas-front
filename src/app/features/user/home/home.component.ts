@@ -19,9 +19,11 @@ export class HomeComponent {
   mesSelecionado?: number;
   anoSelecionado?: number;
   estabelecimentoSelecionado?: number;
+  tamanhoSelecionado?: number;
   mesAplicado?: number;
   anoAplicado?: number;
   estabelecimentoAplicado?: number;
+  tamanhoAplicado?: number;
 
 
   competenciaFormulario = new FormGroup({
@@ -61,12 +63,17 @@ export class HomeComponent {
     this.estabelecimentoSelecionado = id;
   }
 
+  filtrarTamanho(id: number){
+    this.tamanhoSelecionado = id;
+  }
+
   filtrosAplicados = 0;
   
   aplicarFiltros() {
     this.mesAplicado = this.mesSelecionado;
     this.anoAplicado = this.anoSelecionado;
     this.estabelecimentoAplicado = this.estabelecimentoSelecionado;
+    this.tamanhoAplicado = this.tamanhoSelecionado;
     this.filtrosAplicados++;
   }
 }

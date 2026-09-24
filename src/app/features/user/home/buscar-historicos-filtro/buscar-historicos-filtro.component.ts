@@ -39,6 +39,7 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
 
   @Input() mes?: number;
   @Input() ano?: number;
+  @Input() tamanhoId?: number;
   @Input() estabelecimentoId?: number;
   @Input() filtrosAplicados = 0;
 
@@ -48,7 +49,7 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
     changes['filtrosAplicados'] &&
     !changes['filtrosAplicados'].firstChange &&
     this.mes &&
-    this.ano
+    this.ano 
   ) {
     this.filtroAplicado = true;
     this.buscarHistoricosFiltrados();
@@ -104,7 +105,8 @@ export class BuscarHistoricosFiltroComponent implements OnChanges {
           'ASC',
           this.mes!,
           this.ano!,
-          this.estabelecimentoId
+          this.estabelecimentoId,
+          this.tamanhoId
         )
       );
 

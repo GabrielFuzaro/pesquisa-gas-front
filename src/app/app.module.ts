@@ -34,6 +34,7 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ButtonSecundaryComponent } from './components/button-secundary/button-secundary.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { BuscarTamanhosFiltroComponent } from './features/user/home/buscar-tamanhos-filtro/buscar-tamanhos-filtro.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ChartLineComponent,
     DatepickerComponent,
     DialogComponent,
-    ButtonSecundaryComponent
+    ButtonSecundaryComponent,
+    BuscarTamanhosFiltroComponent
   ],
   imports: [
     BrowserModule,

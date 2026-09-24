@@ -26,6 +26,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   @Input() ano?: number;
   @Input() estabelecimentoId?: number;
   @Input() filtrosAplicados = 0;
+  @Input() tamanhoId?: number;
 
   private map!: any;
   markers: any[] = [];
@@ -101,7 +102,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     try {
       const response = await firstValueFrom(
         this.historicoService.buscarMenorPrecoAtuais(
-          0, 1000, 'ASC', this.mes!, this.ano!, this.estabelecimentoId
+          0, 1000, 'ASC', this.mes!, this.ano!, this.estabelecimentoId, this.tamanhoId
         )
       );
 

@@ -24,10 +24,14 @@ export class HistoricoService{
 
   });
 
-    buscarHistoricosPorMesEspecifico(mes: number, ano: number): Observable<Historico[]> {
-    const params = new HttpParams()
+    buscarHistoricosPorMesEspecifico(mes: number, ano: number, tamanhoId?: number): Observable<Historico[]> {
+    let params = new HttpParams()
         .set('mes', mes)
         .set('ano', ano);
+        
+        if (tamanhoId !== undefined) {
+        params = params.set('tamanhoId', tamanhoId);
+    }
 
     return this.http.get<Historico[]>(`${this.apiHist}/por-mes-especifico`, {
         headers: this.httpHeaders,
@@ -63,7 +67,8 @@ export class HistoricoService{
         orderPreco: string,
         mes: number,
         ano: number,
-        estabelecimentoId?: number
+        estabelecimentoId?: number,
+        tamanhoId?: number
         ): Observable<Page<HistoricoPorMes>> {
         let params = new HttpParams()
             .set('page', page)
@@ -74,6 +79,10 @@ export class HistoricoService{
 
         if (estabelecimentoId !== undefined) {
             params = params.set('estabelecimentoId', estabelecimentoId);
+        }
+
+        if (tamanhoId !== undefined) {
+            params = params.set('tamanhoId', tamanhoId);
         }
 
         return this.http.get<Page<HistoricoPorMes>>(`${this.apiHist}/competencias-detalhadas`, {
