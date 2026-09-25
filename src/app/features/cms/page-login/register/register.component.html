@@ -1,0 +1,186 @@
+<section class="flex items-center h-screen justify-center p-5 bg-gray-100">
+  <div
+    class="md:w-screen lg:w-screen sm:flex sm:justify-center md:flex md:justify-center"
+  >
+    <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl">
+          Register
+        </h1>
+        <form class="space-y-4 md:space-y-6" [formGroup]="registerForm">
+          <div>
+            <label for="name" class="block text-md font-medium text-gray-500"
+              >Nome</label
+            >
+            <input
+              formControlName="name"
+              type="text"
+              maxlength="255"
+              name="name"
+              id="name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+              required=""
+            />
+          </div>
+          <div class="grid grid-cols-4">
+            <div class="col-span-2">
+              <label for="cpf" class="block text-md font-medium text-gray-500"
+                >CPF</label
+              >
+              <input
+                formControlName="cpf"
+                type="text"
+                name="cpf"
+                id="cpf"
+                mask="000.000.000-00"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                required=""
+              />
+            </div>
+
+            <div class="col-span-2">
+              <label for="cpf" class="block text-md font-medium text-gray-500"
+                >Telefone</label
+              >
+              <input
+                formControlName="telefone"
+                type="text"
+                name="telefone"
+                id="telefone"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                required=""
+                mask="(00) 00000-0000"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="email" class="block text-md font-medium text-gray-500"
+              >Email</label
+            >
+            <input
+              formControlName="email"
+              type="email"
+              name="email"
+              id="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+              required=""
+            />
+          </div>
+
+          <div class="grid grid-cols-4">
+            <div class="col-span-1">
+              <label class="block text-md font-medium text-gray-500" for="cep"
+                >CEP</label
+              >
+              <input
+                #inputCep
+                formControlName="cep"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                type="text"
+                id="cep"
+                aria-label="cep"
+                required
+                mask="00000-000"
+              />
+            </div>
+
+            <div class="col-span-3">
+              <label class="block text-md font-medium text-gray-500" for="rua"
+                >Rua</label
+              >
+              <input
+                formControlName="rua"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                type="text"
+                maxlength="255"
+                id="rua"
+                aria-label="rua"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4">
+            <div class="col-span-2">
+              <label
+                class="block text-md font-medium text-gray-500"
+                for="cidade"
+                >Cidade</label
+              >
+              <input
+                #inputCep
+                formControlName="cidade"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                type="text"
+                maxlength="30"
+                id="cidade"
+                aria-label="cidade"
+                required
+              />
+            </div>
+
+            <div class="col-span-2">
+              <label
+                class="block text-md font-medium text-gray-500"
+                for="bairro"
+                >Bairro</label
+              >
+              <input
+                formControlName="bairro"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+                type="text"
+                maxlength="255"
+                id="bairro"
+                aria-label="bairro"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="password"
+              class="block text-md font-medium text-gray-500"
+              >Senha</label
+            >
+            <input
+              formControlName="password"
+              type="password"
+              name="password"
+              id="password"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+              required=""
+            />
+          </div>
+          <div>
+            <label
+              for="passwordConfirm"
+              class="block text-md font-medium text-gray-500"
+              >Confirmar senha</label
+            >
+            <input
+              formControlName="passwordConfirm"
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-400 block w-full p-2.5"
+              required=""
+            />
+          </div>
+
+          <div class="flex items-center justify-end">
+            <div class="flex items-end">
+              <button
+                (click)="register()"
+                type="button"
+                class="rounded-lg text-white bg-default hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              >
+                Entrar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

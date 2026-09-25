@@ -1,0 +1,55 @@
+<div class="flex">
+  <div class="w-full m-5">
+    <div class="p-4 bg-white m-5 shadow-sm rounded-sm">
+      <div
+        class="flex items-center space-x-2 font-semibold text-gray-900 leading-8"
+      >
+        <span class="title font-medium justify-start text-lg">Sobre</span>
+
+        <!-- <a
+          id="botaoEdit"
+          (click)="editProfile()"
+          class="cursor-pointer text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3"
+        >
+          Editar informações
+        </a> -->
+      </div>
+      <div class="text-gray-700">
+        <div class="">
+          <form [formGroup]="userForm" *ngIf="userForm">
+            <div class="">
+              <label class="block text-sm" for="name">Nome</label>
+              <input
+                formControlName="name"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="name"
+              />
+            </div>
+
+            <div class="grid md:gap-5">
+              <div class="col">
+                <label class="block text-sm" for="email">E-mail</label>
+                <input
+                  formControlName="email"
+                  class="default-input w-full p-2.5"
+                  type="email"
+                  id="email"
+                />
+              </div>
+            </div>
+
+            <div class="pt-0 w-full flex justify-end">
+              <a id="salvarEdit" class="hidden">
+                <button-primary
+                  [value]="Salvar"
+                  (click)="salvarEdit()"
+                ></button-primary>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

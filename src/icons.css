@@ -1,0 +1,57 @@
+
+
+/* Icons */
+.icon-info:hover {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(89%) saturate(4218%)
+    hue-rotate(214deg) brightness(103%) contrast(106%);
+}
+
+.icon-trash {
+  filter: brightness(0) saturate(100%) invert(28%) sepia(83%) saturate(7299%)
+    hue-rotate(355deg) brightness(109%) contrast(123%);
+}
+
+.icon-trash:hover {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(60%) saturate(7332%)
+    hue-rotate(359deg) brightness(88%) contrast(109%);
+}
+
+.icon-check {
+  filter: brightness(0) saturate(100%) invert(89%) sepia(94%) saturate(4541%)
+    hue-rotate(45deg) brightness(83%) contrast(156%);
+}
+
+.icon-check:hover {
+  filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(1647%)
+    hue-rotate(82deg) brightness(96%) contrast(102%);
+}
+
+.icon-close {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(55%) saturate(7499%)
+    hue-rotate(357deg) brightness(98%) contrast(119%);
+}
+
+.icon-add-circle {
+  filter: brightness(0) saturate(100%) invert(25%) sepia(38%) saturate(4266%)
+    hue-rotate(82deg) brightness(94%) contrast(107%);
+}
+
+.icon-print {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(55%) saturate(7499%)
+    hue-rotate(357deg) brightness(98%) contrast(119%);
+}
+
+.icon-cancel {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(55%) saturate(7499%)
+    hue-rotate(357deg) brightness(98%) contrast(119%);
+}
+
+/* .icon-logout {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(33%) saturate(841%)
+    hue-rotate(205deg) brightness(108%) contrast(104%);
+} */
+
+.icon-folder-open {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(98%) saturate(2663%)
+    hue-rotate(216deg) brightness(96%) contrast(91%);
+}

@@ -40,8 +40,8 @@ export class EstabelecimentoService {
         )
     }
 
-    getById(id:number): Observable<Estabelecimento[]> {
-        return this.http.get<Estabelecimento[]>(`${this.apiEst}/${id}`,
+    getById(id:number): Observable<Estabelecimento> {
+        return this.http.get<Estabelecimento>(`${this.apiEst}/${id}`,
             {
                 headers: this.getHeaders()
             }
@@ -56,7 +56,7 @@ export class EstabelecimentoService {
         )
     }
 
-    updateEstabelecimtno(id: number, input: EstabelecimentoInput):Observable<Estabelecimento> {
+    updateEstabelecimento(id: number, input: EstabelecimentoInput):Observable<Estabelecimento> {
         return this.http.put<Estabelecimento>(`${this.apiEst}/${id}`, input,
             {
                 headers: this.getHeaders()

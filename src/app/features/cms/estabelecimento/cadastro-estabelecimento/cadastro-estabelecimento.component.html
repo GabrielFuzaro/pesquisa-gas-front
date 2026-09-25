@@ -1,0 +1,159 @@
+<div class="flex p-5 w-full">
+  <div class="m-5 w-full">
+    <p class="title text-lg font-bold">Cadastrar Estabelecimento</p>
+
+    <form class="w-full" [formGroup]="formulario" *ngIf="formulario">
+      <div class="mt-5">
+        <div class="grid md:gap-5">
+          <div>
+            <label class="block text-sm" for="nome"> Nome do Estabelecimento </label>
+
+            <input
+              id="nome"
+              type="text"
+              formControlName="nome"
+              class="default-input w-full p-2.5"
+              maxlength="255"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="col">
+          <label class="block text-sm" for="telefone"> Telefone </label>
+
+          <input
+            id="telefone"
+            type="text"
+            formControlName="telefone"
+            class="default-input w-full p-2.5"
+            maxlength="255"
+            mask="(00) 00000-0000"
+          />
+        </div>
+
+        <div class="col">
+          <label class="block text-sm" for="cnpj"> CNPJ </label>
+
+          <input
+            id="cnpj"
+            type="text"
+            formControlName="cnpj"
+            class="default-input w-full p-2.5"
+            maxlength="255"
+            mask="00.000.000/0000-00"
+          />
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="col">
+          <label class="block text-sm" for="gerente"> Gerente </label>
+
+          <input
+            id="gerente"
+            type="text"
+            formControlName="gerente"
+            class="default-input w-full p-2.5"
+            maxlength="255"
+          />
+        </div>
+
+        <div class="col">
+          <label class="block text-sm" for="proprietario"> Proprietário </label>
+
+          <input
+            id="proprietario"
+            type="text"
+            formControlName="proprietario"
+            class="default-input w-full p-2.5"
+            maxlength="255"
+          />
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="col">
+          <label class="block text-sm" for="cep"> CEP </label>
+
+          <input
+            id="cep"
+            type="text"
+            formControlName="cep"
+            class="default-input w-full p-2.5"
+            maxlength="255"
+            mask="00000-000"
+            placeholder="Ex: 01001-000"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 mt-5">
+        <div class="col">
+          <label class="block text-sm" for="logradouro"> Rua </label>
+
+          <input
+            id="logradouro"
+            type="text"
+            formControlName="logradouro"
+            class="default-input-disabled w-full p-2.5"
+            maxlength="255"
+            placeholder="Ex: Avenida Leopoldino de Oliveira, 4500"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="col">
+          <label class="block text-sm" for="bairro"> Bairro </label>
+
+          <input
+            id="bairro"
+            type="text"
+            formControlName="bairro"
+            class="default-input-disabled w-full p-2.5"
+            maxlength="255"
+            placeholder="Ex: Centro"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="col">
+          <label class="block text-sm" for="numero"> Número </label>
+
+          <input
+            id="numero"
+            type="text"
+            formControlName="numero"
+            class="default-input w-full p-2.5"
+            maxlength="255"
+            placeholder="Ex: 4500"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="map-frame mt-5">
+        <div #mapContainer id="map"></div>
+      </div>
+
+      <p class="mt-2 text-sm text-gray-600">
+        Clique no mapa para criar o pin. Depois, arraste o pin para ajustar a
+        localização.
+      </p>
+
+      <div class="items-center flex justify-end my-2 gap-2">
+        <button-secundary
+          [value]="'Cancelar'"
+          (click)="return()"
+        ></button-secundary>
+        <button-primary
+          [value]="cadastrando ? 'Cadastrando...' : 'Cadastrar'"
+          (click)="save()"
+        ></button-primary>
+      </div>
+    </form>
+  </div>
+</div>

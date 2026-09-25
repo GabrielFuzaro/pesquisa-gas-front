@@ -1,0 +1,315 @@
+* {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+div {
+}
+
+span {
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead {
+}
+
+tbody {
+}
+
+tfoot {
+}
+
+tr {
+}
+
+th {
+  vertical-align: middle;
+  line-height: 160%;
+}
+
+td {
+  vertical-align: middle;
+  line-height: 160%;
+}
+
+td span {
+  line-height: 160%;
+}
+
+td a {
+  line-height: 160%;
+}
+
+form {
+  width: 100%;
+}
+
+.input-form {
+  width: 100%;
+  line-height: 160%;
+  border: none !important;
+}
+
+label {
+  display: inline-block;
+  color: #000000;
+  padding: 5px 0px 0px 0px !important;
+}
+
+label a {
+  line-height: 160%;
+}
+
+label span {
+  line-height: 160%;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  /* border-radius: 15px; */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0000ff;
+  /* border-radius: 55%; */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #666666;
+  /* border-radius: 15px; */
+}
+
+.input-form {
+  border: solid 1px #bdbdbd;
+  outline: none;
+}
+
+textarea {
+  overflow: auto;
+  resize: none;
+  height: 120px;
+}
+
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+textarea:hover::-webkit-scrollbar-track {
+  background: #eeeeee;
+}
+
+textarea:hover::-webkit-scrollbar-thumb {
+  border-radius: 32px;
+  background: #757575;
+}
+
+select {
+  text-transform: none;
+}
+
+option {
+}
+
+button {
+  line-height: 160%;
+}
+
+button span {
+  line-height: 160%;
+}
+
+button a {
+  line-height: 160%;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 160%;
+}
+
+li span {
+  line-height: 160%;
+}
+
+li a {
+  line-height: 160%;
+}
+
+li ul {
+  position: absolute;
+  display: none;
+}
+
+li:hover ul {
+  display: block;
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 100%;
+}
+
+h1 span {
+  font-size: 42px;
+  line-height: 100%;
+}
+
+h1 a {
+  font-size: 42px;
+  line-height: 100%;
+}
+
+h2 {
+  font-size: 38px;
+  line-height: 110%;
+}
+
+h2 span {
+  font-size: 38px;
+  line-height: 110%;
+}
+
+h2 a {
+  font-size: 38px;
+  line-height: 110%;
+}
+
+h3 {
+  font-size: 34px;
+  line-height: 120%;
+}
+
+h3 span {
+  font-size: 34px;
+  line-height: 120%;
+}
+
+h3 a {
+  font-size: 34px;
+  line-height: 120%;
+}
+
+h4 {
+  font-size: 30px;
+  line-height: 130%;
+}
+
+h4 span {
+  font-size: 30px;
+  line-height: 130%;
+}
+
+h4 a {
+  font-size: 30px;
+  line-height: 130%;
+}
+
+h5 {
+  font-size: 26px;
+  line-height: 140%;
+}
+
+h5 span {
+  font-size: 26px;
+  line-height: 140%;
+}
+
+h5 a {
+  font-size: 26px;
+  line-height: 140%;
+}
+
+h6 {
+  font-size: 22px;
+  line-height: 150%;
+}
+
+h6 span {
+  font-size: 22px;
+  line-height: 150%;
+}
+
+h6 a {
+  font-size: 22px;
+  line-height: 150%;
+}
+
+p {
+  line-height: 160%;
+}
+
+p span {
+  line-height: 160%;
+}
+
+p a {
+  line-height: 160%;
+}
+
+img {
+  border: none;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  /* outline-width: 4px;
+     outline-style: solid; */
+  /* outline-color: #bbdefb; */
+}
+
+a span {
+  line-height: 160%;
+}
+
+::placeholder {
+  font-weight: 400;
+  color: #757575;
+}
+
+pre,
+code {
+  line-height: 160%;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+pre p {
+  display: none;
+}
+
+pre:hover p {
+  display: block;
+}
+
+code {
+  font-family: "Open Sans", sans-serif !important;
+}

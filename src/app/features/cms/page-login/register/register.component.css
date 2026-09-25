@@ -1,0 +1,24 @@
+.full-height {
+  height: 100vh !important;
+}
+
+.bg{
+  /* background-image: url('assets/background.png'); */
+  opacity : 0.5;
+}
+
+hr {
+  display: flex;
+  height: 1px;
+  width: 70%;
+  border: 0;
+  border-top: 1px solid #ffffff;
+  margin: 10px auto 10px auto;
+  padding: 0px;
+  align-items: center;
+}
+
+.width-80{
+  width: 80% !important;
+}
+

@@ -1,0 +1,196 @@
+<div class="flex">
+  <div class="w-full h-full p-5">
+    <div class="">
+      <div class="flex justify-between">
+        <div class="">
+          <p class="title text-white font-medium text-lg">Estabelecimento</p>
+        </div>
+
+        <div class="">
+          <a
+            routerLink="register"
+            routerLinkActive="active"
+            *ngIf="(permissionService.created$ | async) === true"
+          >
+            <button-primary [value]="'Adicionar'"></button-primary>
+          </a>
+        </div>
+      </div>
+
+      <div class="block sm:flex justify-end p-2">
+        <div class="">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </div>
+            <input
+              matInput
+              (keyup)="applyFilter($event)"
+              placeholder="Pesquisar"
+              class="block w-full p-2 pl-10 text-sm text-black border border-blue-500 rounded-lg"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="">
+        <div class="example-container p-2 relative overflow-x-auto">
+          <table
+            mat-table
+            [dataSource]="estabelecimentoArray"
+            class="min-w-full mat-elevation-z2"
+            matSort
+            (matSortChange)="announceSortChange($event)"
+          >
+            <ng-container matColumnDef="id">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                class="th-cell hidden md:table-cell"
+                sortActionDescription="Sort by number"
+              >
+                ID
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let estabelecimento"
+                class="block md:table-cell mb-2"
+              >
+                <span class="md:hidden font-semibold">Id: </span>{{ estabelecimento.id }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="estabelecimento">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                class="th-cell hidden md:table-cell"
+                sortActionDescription="Sort by nome"
+              >
+                Nome
+              </th>
+
+              <td
+                mat-cell
+                *matCellDef="let estabelecimento"
+                class="block md:table-cell mb-2"
+              >
+                <span class="md:hidden font-semibold">Nome: </span
+                >{{ estabelecimento.nome }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="endereco">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                class="th-cell hidden md:table-cell"
+                sortActionDescription="Sort by endereco"
+              >
+                Endereço
+              </th>
+
+              <td
+                mat-cell
+                *matCellDef="let estabelecimento"
+                class="block md:table-cell mb-2"
+              >
+                <span class="md:hidden font-semibold">Endereço: </span
+                >{{ getEnderecoCompleto(estabelecimento) }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+              <th
+                mat-header-cell
+                class="th-cell w-full hidden md:table-cell justify-center"
+                *matHeaderCellDef
+              ></th>
+              <td
+                mat-cell
+                *matCellDef="let estabelecimento"
+                class="flex justify-center w-full md:w-full md:justify-end md:table-cell mb-2"
+              >
+                <div class="justify-center flex">
+                  <div
+                    class="flex w-full"
+                    *ngIf="(permissionService.info$ | async) === true"
+                  >
+                    <img
+                      *ngIf="(permissionService.info$ | async) === true"
+                      (click)="getInfo(estabelecimento)"
+                      class="cursor-pointer icon-info"
+                      src="assets/icon/info.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      estabelecimento.activated &&
+                      (permissionService.edit$ | async) === true
+                    "
+                    class="flex w-full"
+                  >
+                    <img
+                      (click)="openDialog(estabelecimento)"
+                      class="cursor-pointer icon-trash"
+                      src="assets/icon/trash.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      !estabelecimento.activated &&
+                      (permissionService.edit$ | async) === true
+                    "
+                    class="flex w-full"
+                  >
+                    <img
+                      (click)="ativar(estabelecimento)"
+                      class="cursor-pointer icon-check"
+                      src="assets/icon/check.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+
+        <div>
+          <mat-paginator
+            #paginator
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 20]"
+            [showFirstLastButtons]="true"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

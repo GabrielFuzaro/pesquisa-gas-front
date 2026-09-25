@@ -1,7 +1,7 @@
 import { DefaultDto } from "./default-dto";
 
 export interface Estabelecimento extends DefaultDto {
-    id: number;
+    //id: number;
     nome: string;
     logradouro: string;
     bairro: string;
@@ -11,6 +11,6 @@ export interface Estabelecimento extends DefaultDto {
     cnpj: string;
     gerente: string;
     proprietario: string;
-    latitude: string;
-    longitude: string;
+    latitude?: string;
+    longitude?: string;
 }

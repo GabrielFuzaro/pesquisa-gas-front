@@ -1,0 +1,124 @@
+<div class="flex flex-col min-h-screen">
+  <app-navbar></app-navbar>
+
+  <section class="flex flex-1 items-center justify-center w-full">
+    <div
+      class="max-sm:w-screen max-sm:m-5 sm:w-screen sm:m-5 sm:flex sm:justify-center"
+    >
+      <div
+        class="bg-white w-full rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-3xl xl:p-0"
+      >
+        <div class="flex flex-col items-center justify-center">
+          <img
+            class="m-5 p-3 mb-0"
+            src="assets/SEDS_Azul.png"
+            alt=""
+            width="45%"
+          />
+          <div
+            class="block font-bold primary-color-text leading-tight text-center tracking-tight md:text-xl"
+          >
+            <small>Projeto Base Login Área Administrativa - CMS</small>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            class="col p-6 space-y-4 md:space-y-6 sm:p-8 hidden md:block lg:block xl:block"
+            id="sobreSistema"
+          >
+            <div>
+              <p class="text-sm md:space-y-6 text-left leading-8">
+                O sistema de Pesquisa de Gás é uma plataforma
+                desenvolvida para gerenciar o cadastro de estabelecimentos de
+                vendas de gás e seus históricos de preços
+                praticados. A aplicação permite centralizar as informações,
+                acompanhar a evolução dos valores ao longo do tempo e
+                disponibilizar consultas de forma rápida e organizada,
+                contribuindo para a transparência e o apoio à tomada de decisões
+                por parte da administração pública e da população.
+              </p>
+            </div>
+          </div>
+
+          <div class="col p-6 space-y-4 md:space-y-6">
+            <div class="p-0 space-y-4 md:space-y-6">
+              <form class="space-y-2 md:space-y-6" [formGroup]="loginForm">
+                <div>
+                  <label
+                    for="email"
+                    class="block text-md font-medium text-black"
+                    >Email</label
+                  >
+                  <input
+                    formControlName="email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="default-input block w-full p-2.5"
+                    required=""
+                  />
+                </div>
+                <div class="">
+                  <label
+                    for="password"
+                    class="block text-md font-medium text-black"
+                    >Senha</label
+                  >
+
+                  <div class="w-full relative">
+                    <input
+                      formControlName="password"
+                      type="password"
+                      name="password"
+                      id="password"
+                      class="default-input block w-full p-2.5 pr-10"
+                      required=""
+                    />
+                    <i
+                      class="bx bx-show absolute items-center cursor-pointer"
+                      (click)="showPassword()"
+                    ></i>
+                  </div>
+                </div>
+                <div class="flex items-center justify-end">
+                  <div class="flex items-end">
+                    <button-primary
+                      (click)="login()"
+                      [value]="value"
+                    ></button-primary>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer
+    [ngStyle]="{
+      'background-color': styleService.colorVariables['bg_primary_color'],
+    }"
+  >
+    <div class="w-full mx-auto md:py-4 p-4">
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <img src="assets/white-codiub.png" alt="" width="4%" />
+        <a href="https://codiub.com.br/" target="_blank"></a>
+        <span
+          class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+        >
+          © 2024
+          <a
+            href="https://codiub.com.br/"
+            target="_blank"
+            class="hover:underline"
+            >Codiub</a
+          >
+          - Todos os direitos reservados.
+        </span>
+      </div>
+    </div>
+  </footer>
+</div>

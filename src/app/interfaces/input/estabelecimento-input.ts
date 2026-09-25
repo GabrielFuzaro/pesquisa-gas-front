@@ -8,8 +8,8 @@ export class EstabelecimentoInput {
     cnpj: string;
     gerente: string;
     proprietario: string;
-    latitude: string;
-    longitude: string;
+    latitude?: number;
+    longitude?: number;
 
     constructor(data: {
         nome: string;
@@ -21,8 +21,8 @@ export class EstabelecimentoInput {
         cnpj: string;
         gerente: string;
         proprietario: string;
-        latitude: string;
-        longitude: string;
+        latitude?: number;
+        longitude?: number;
     }) {
         this.nome = data.nome;
         this.logradouro = data.logradouro;

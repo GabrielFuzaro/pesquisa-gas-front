@@ -1,0 +1,159 @@
+<div class="flex">
+  <div class="w-full h-full p-5">
+    <div class="m-5 w-full">
+      <div class="flex justify-between">
+        <p class="title font-medium justify-start text-lg">
+          Informações sobre o estabelecimento
+        </p>
+      </div>
+
+      <form class="h-full w-full" [formGroup]="formulario" *ngIf="formulario">
+        <div class="">
+          <label class="block text-sm input-cod" for="id">Código</label>
+          <input
+            formControlName="id"
+            class="default-input-disabled text-center p-2.5"
+            type="text"
+            id="name"
+            required
+          />
+        </div>
+        <div>
+          <div class="grid gap-4">
+            <div class="col">
+              <label class="block text-sm" for="estabelecimento">Estabelecimento</label>
+              <input
+                formControlName="nome"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="nome"
+                aria-label="nome"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="col">
+              <label class="block text-sm" for="telefone"> Telefone </label>
+
+              <input
+                id="telefone"
+                type="text"
+                formControlName="telefone"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+                mask="(00) 00000-0000"
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="cnpj"> CNPJ </label>
+
+              <input
+                id="cnpj"
+                type="text"
+                formControlName="cnpj"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+                mask="00.000.000/0000-00"
+              />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="col">
+              <label class="block text-sm" for="gerente"> Gerente </label>
+
+              <input
+                id="gerente"
+                type="text"
+                formControlName="gerente"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="proprietario">
+                Proprietário
+              </label>
+
+              <input
+                id="proprietario"
+                type="text"
+                formControlName="proprietario"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="col">
+              <label class="block text-sm" for="cep">CEP</label>
+              <input
+                formControlName="cep"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="cep"
+                aria-label="cep"
+                required
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="col">
+              <label class="block text-sm" for="logradouro">Logradouro</label>
+              <input
+                formControlName="logradouro"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="logradouro"
+                aria-label="logradouro"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="bairro">Bairro</label>
+              <input
+                formControlName="bairro"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="bairro"
+                aria-label="bairro"
+                required
+              />
+            </div>
+            <div class="col">
+              <label class="block text-sm" for="numero">Número</label>
+              <input
+                formControlName="numero"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="numero"
+                aria-label="numero"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="map-frame mt-5">
+        <div #mapContainer id="map"></div>
+      </div>
+      <div class="flex justify-end pt-3 m-5">
+        <button-secundary
+          [value]="'Voltar'"
+          (click)="return()"
+        ></button-secundary>
+        <button-primary
+          *ngIf="(permissionService.edit$ | async) === true"
+          [value]="'Editar'"
+          (click)="edit()"
+        ></button-primary>
+      </div>
+    </div>
+  </div>
+</div>

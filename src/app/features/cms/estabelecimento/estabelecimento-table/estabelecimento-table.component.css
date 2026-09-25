@@ -1,0 +1,33 @@
+.mat-column-acoes{
+  width: 7% !important;
+}
+
+@media screen and (max-width: 800px){
+  td{
+    padding: 5px;
+    padding-left: 10px;
+    border: none;
+    margin: 10px;
+  }
+
+  tr{
+    padding: 50px !important;
+    margin: 50px !important;
+    border: 1px solid rgb(214, 214, 214);
+  }
+
+  th{
+    border: none;
+  }
+
+  ::ng-deep thead{
+    display: none !important;
+  }
+
+  .mat-column-acoes{
+    display: flex;
+    justify-content: start;
+    width: 30% !important;
+  }
+}
+

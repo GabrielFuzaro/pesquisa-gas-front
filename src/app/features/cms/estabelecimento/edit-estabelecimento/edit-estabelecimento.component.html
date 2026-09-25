@@ -1,0 +1,162 @@
+<div class="flex">
+  <div class="w-full h-full p-5">
+    <div class="m-5 w-full">
+      <div class="flex justify-between">
+        <p class="title font-medium justify-start text-lg">Editar estabelecimento</p>
+      </div>
+
+      <form class="h-full" [formGroup]="formulario" *ngIf="formulario">
+        <div class="">
+          <label class="block text-sm" for="id">Código</label>
+          <input
+            formControlName="id"
+            class="default-input-disabled p-2.5 text-center"
+            type="text"
+            id="id"
+            required
+          />
+        </div>
+        <div>
+          <div class="grid gap-4">
+            <div class="col">
+              <label class="block text-sm" for="estabelecimentos">Estabelecimento</label>
+              <input
+                formControlName="nome"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="nome"
+                aria-label="nome"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="col">
+              <label class="block text-sm" for="telefone"> Telefone </label>
+
+              <input
+                id="telefone"
+                type="text"
+                formControlName="telefone"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+                mask="(00) 00000-0000"
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="cnpj"> CNPJ </label>
+
+              <input
+                id="cnpj"
+                type="text"
+                formControlName="cnpj"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+                mask="00.000.000/0000-00"
+              />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="col">
+              <label class="block text-sm" for="gerente"> Gerente </label>
+
+              <input
+                id="gerente"
+                type="text"
+                formControlName="gerente"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="proprietario">
+                Proprietário
+              </label>
+
+              <input
+                id="proprietario"
+                type="text"
+                formControlName="proprietario"
+                class="default-input w-full p-2.5"
+                maxlength="255"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="col">
+              <label class="block text-sm" for="cep">CEP</label>
+              <input
+                formControlName="cep"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="cep"
+                mask="00000-000"
+                aria-label="cep"
+                required
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="col">
+              <label class="block text-sm" for="logradouro">Logradouro</label>
+              <input
+                formControlName="logradouro"
+                class="default-input-disabled w-full p-2.5"
+                type="text"
+                id="logradouro"
+                aria-label="logradouro"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label class="block text-sm" for="bairro">Bairro</label>
+              <input
+                formControlName="bairro"
+                class="default-input-disabled w-full p-2.5"
+                type="text"
+                id="bairro"
+                aria-label="bairro"
+                required
+              />
+            </div>
+            <div class="col">
+              <label class="block text-sm" for="numero">Número</label>
+              <input
+                formControlName="numero"
+                class="default-input w-full p-2.5"
+                type="text"
+                id="numero"
+                aria-label="numero"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="map-frame mt-5">
+        <div #mapContainer id="map"></div>
+      </div>
+      <p class="mt-2 text-sm text-gray-600">
+        Arraste o pin para ajustar a localização.
+      </p>
+      <div class="items-center flex justify-end pt-3">
+        <div class="align-end">
+          <button-secundary
+            [value]="'Cancelar'"
+            (click)="return()"
+          ></button-secundary>
+        </div>
+
+        <div>
+          <button-primary [value]="'Salvar'" (click)="edit()"></button-primary>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

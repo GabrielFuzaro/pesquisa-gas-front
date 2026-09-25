@@ -21,7 +21,7 @@ export class LoginService {
     }
 
     verifyToken() {
-        return this.http.post(`${environment.api}/auth/login/verify-token`,this.cookieService.getCookie('token'))
+        return this.http.post(`${environment.api}/auth/verify-token`,this.cookieService.getCookie('token'))
         .pipe(take(1))
     }
 
